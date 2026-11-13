@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><TreatWarningsAsErrors>true</TreatWarningsAsErrors></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../src/Inventario.Api/Domain.cs" Link="Domain.cs" />
+    <Compile Include="../../src/Inventario.Api/VentaService.cs" Link="VentaService.cs" />
+    <Compile Include="../../src/Inventario.Api/AcademicModels.cs" Link="AcademicModels.cs" />
+  </ItemGroup>
+</Project>

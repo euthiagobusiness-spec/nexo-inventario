@@ -1,0 +1,1 @@
+PASS: original preservado; exactamente tres l�neas monetarias adaptadas; todos los while intactos.

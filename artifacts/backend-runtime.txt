@@ -1,0 +1,59 @@
+Started inventario-mvp.service - Inventario MVP (.NET 8).
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://10.77.55.3:8080
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/inventario/inventario-mvp/publish
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 400
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 400
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 400
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 400
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 403
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 400
+warn: Inventario.Api[0]
+      Solicitud fallida: PostgresException; HTTP 409
+Salida de inventario: Producto QA conservado
+Venta registrada.
+Total: 37.05
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 409
+Stock insuficiente.
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 409
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 409
+Stock insuficiente.
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 409
+Salida de inventario: QA concurrencia
+Venta registrada.
+Total: 1.00
+Stock insuficiente.
+warn: Inventario.Api[0]
+      Solicitud fallida: DomainError; HTTP 409
+Stopping inventario-mvp.service - Inventario MVP (.NET 8)...
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+inventario-mvp.service: Deactivated successfully.
+Stopped inventario-mvp.service - Inventario MVP (.NET 8).
+inventario-mvp.service: Consumed 1.958s CPU time.
+Started inventario-mvp.service - Inventario MVP (.NET 8).
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://10.77.55.3:8080
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/inventario/inventario-mvp/publish
+warn: Inventario.Api[0]
+      Solicitud fallida: PostgresException; HTTP 503

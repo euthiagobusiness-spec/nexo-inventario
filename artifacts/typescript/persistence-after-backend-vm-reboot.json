@@ -1,0 +1,37 @@
+{
+  "label": "backend-vm-reboot",
+  "timestampUtc": "2026-11-13T14:09:33.349609+00:00",
+  "status": "PASS",
+  "exactRecordMatch": true,
+  "backendActive": true,
+  "backendEnabled": true,
+  "mysqlActive": true,
+  "mysqlEnabled": true,
+  "databaseToBackendHTTP": true,
+  "records": {
+    "product": {
+      "id": 13,
+      "sku": "VM13",
+      "name": "demo",
+      "category": "demo",
+      "price": 49.9,
+      "stock": 8,
+      "minimumStock": 5
+    },
+    "sale": {
+      "id": 9,
+      "requestId": "437bb231-48a9-40cd-9e98-e895be179533",
+      "total": 99.8,
+      "createdAt": "2026-11-13T11:42:32.151376Z",
+      "items": [
+        {
+          "productId": 13,
+          "sku": "VM13",
+          "name": "demo",
+          "quantity": 2,
+          "unitPrice": 49.9
+        }
+      ]
+    }
+  }
+}

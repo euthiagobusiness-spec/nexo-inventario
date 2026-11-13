@@ -1,0 +1,18 @@
+{
+  "timestampUtc": "20261113T140806Z",
+  "oldActive": true,
+  "oldEnabled": true,
+  "postgresql": "preservado; sin modificaciones",
+  "status": "PASS",
+  "readiness": {
+    "status": "ready",
+    "database": "MySQL",
+    "schema": 1,
+    "language": "TypeScript"
+  },
+  "exactRecordMatch": true,
+  "serviceRestart": "PASS",
+  "vmReboot": "PENDIENTE",
+  "browserVisual": "PENDIENTE",
+  "application": "http://10.77.55.3:8080"
+}

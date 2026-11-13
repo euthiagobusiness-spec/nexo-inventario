@@ -1,0 +1,4 @@
+# Propuesta, NO aplicada. /etc/postgresql/16/main/conf.d/inventario-private.conf
+# Escucha privada y loopback. Requiere reiniciar PostgreSQL tras revisar otros usos.
+listen_addresses = '127.0.0.1,10.77.55.4'
+password_encryption = 'scram-sha-256'

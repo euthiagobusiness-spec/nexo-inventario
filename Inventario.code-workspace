@@ -1,0 +1,21 @@
+{
+  "folders": [
+    { "name": "Backend TypeScript", "path": "backend" },
+    { "name": "Frontend TypeScript", "path": "frontend" },
+    { "name": "Base de datos", "path": "db" },
+    { "name": "Contratos", "path": "shared" },
+    { "name": "Implementación", "path": "deploy/typescript" },
+    { "name": "Pruebas TypeScript", "path": "backend/tests" },
+    { "name": "Documentación", "path": "docs" },
+    { "name": "Entregables", "path": "deliverables" },
+    { "name": "C# anterior conservado", "path": "src/Inventario.Api" },
+    { "name": "Pruebas C# anteriores", "path": "tests/Inventario.Tests" },
+    { "name": "Proyecto completo", "path": "." }
+  ],
+  "settings": {
+    "files.exclude": { "**/bin": true, "**/obj": true, "**/__pycache__": true },
+    "search.exclude": { "**/bin/**": true, "**/obj/**": true, "artifacts/**": true },
+    "files.associations": { "*.sql": "sql", "*.cs.txt": "csharp" },
+    "editor.tabSize": 4
+  }
+}

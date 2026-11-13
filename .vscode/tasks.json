@@ -1,0 +1,67 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TypeScript: revisar tipos",
+      "type": "process", "command": "npm",
+      "args": ["run", "typecheck"],
+      "options": { "cwd": "${workspaceFolder:Proyecto completo}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend y Frontend: compilar TypeScript",
+      "type": "process", "command": "npm",
+      "args": ["run", "build"],
+      "options": { "cwd": "${workspaceFolder:Proyecto completo}" },
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "TypeScript: ejecutar Backend y Frontend local",
+      "type": "process", "command": "npm",
+      "args": ["start"],
+      "options": { "cwd": "${workspaceFolder:Proyecto completo}" },
+      "dependsOn": "Backend y Frontend: compilar TypeScript", "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "TypeScript: pruebas unitarias y HTTP",
+      "type": "process", "command": "npm",
+      "args": ["test"],
+      "options": { "cwd": "${workspaceFolder:Proyecto completo}" },
+      "problemMatcher": [], "group": "test"
+    },
+    {
+      "label": "Pruebas: preservar VentaService original",
+      "type": "process", "command": "python",
+      "linux": { "command": "python3" }, "osx": { "command": "python3" },
+      "args": ["tests/check_original.py"],
+      "options": { "cwd": "${workspaceFolder:Proyecto completo}" },
+      "problemMatcher": [], "group": "test"
+    },
+    {
+      "label": "VM Backend: validar inventario TypeScript y MySQL (requiere despliegue)",
+      "type": "process", "command": "ssh",
+      "args": ["-o", "BatchMode=yes", "-o", "ConnectTimeout=8", "-p", "2222", "inventario@127.0.0.1", "cd /home/inventario/inventario-typescript && python3 tests/http_e2e.py --base-url http://10.77.55.3:8080 --output artifacts/typescript/http-e2e-vm.json"],
+      "problemMatcher": []
+    },
+    {
+      "label": "VM Backend: verificar API principal (solo lectura)",
+      "type": "process", "command": "ssh",
+      "args": ["-o", "BatchMode=yes", "-o", "ConnectTimeout=8", "-p", "2222", "inventario@127.0.0.1", "curl --max-time 10 --fail --silent --show-error http://10.77.55.3:8080/api/health/ready"],
+      "problemMatcher": []
+    },
+    {
+      "label": "VM Backend: verificar candidata C# MySQL anterior (solo lectura)",
+      "type": "process", "command": "ssh",
+      "args": ["-o", "BatchMode=yes", "-o", "ConnectTimeout=8", "-p", "2222", "inventario@127.0.0.1", "curl --max-time 10 --fail --silent --show-error http://10.77.55.3:8081/api/health/ready"],
+      "problemMatcher": []
+    },
+    {
+      "label": "VM Database: verificar servicios (solo lectura)",
+      "type": "process", "command": "ssh",
+      "args": ["-o", "BatchMode=yes", "-o", "ConnectTimeout=8", "-p", "2223", "inventario@127.0.0.1", "systemctl is-active mysql postgresql"],
+      "problemMatcher": []
+    }
+  ]
+}

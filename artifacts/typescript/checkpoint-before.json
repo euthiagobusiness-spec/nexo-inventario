@@ -1,0 +1,10 @@
+{
+  "timestampUtc": "2026-11-13T13:46:03.985473+00:00",
+  "baseUrl": "http://10.77.55.3:8082",
+  "status": "PASS",
+  "productId": 13,
+  "saleId": 9,
+  "stock": 8,
+  "saleTotal": 99.8,
+  "exactRecordMatch": true
+}

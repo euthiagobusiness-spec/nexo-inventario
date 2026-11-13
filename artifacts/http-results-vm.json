@@ -1,0 +1,206 @@
+{
+  "timestampUtc": "2026-11-13T06:55:39.802150+00:00",
+  "baseUrl": "http://10.77.55.3:8080",
+  "testPrefix": null,
+  "counts": {
+    "PASS": 12,
+    "FAIL": 0,
+    "BLOCKED": 11
+  },
+  "results": [
+    {
+      "name": "HTML servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 12690,
+        "headers": {
+          "Content-Length": "12811",
+          "Connection": "close",
+          "Content-Type": "text/html",
+          "Date": "Fri, 13 Nov 2026 06:55:38 GMT",
+          "Server": "Kestrel",
+          "Accept-Ranges": "bytes",
+          "ETag": "\"1dd733bd84a6c0b\"",
+          "Last-Modified": "Fri, 13 Nov 2026 06:54:36 GMT",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        }
+      }
+    },
+    {
+      "name": "CSS servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 10393,
+        "headers": {
+          "Content-Length": "10393",
+          "Connection": "close",
+          "Content-Type": "text/css",
+          "Date": "Fri, 13 Nov 2026 06:55:38 GMT",
+          "Server": "Kestrel",
+          "Accept-Ranges": "bytes",
+          "ETag": "\"1dd733942151019\"",
+          "Last-Modified": "Fri, 13 Nov 2026 06:36:05 GMT",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        }
+      }
+    },
+    {
+      "name": "JavaScript servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 15647,
+        "headers": {
+          "Content-Length": "15694",
+          "Connection": "close",
+          "Content-Type": "text/javascript",
+          "Date": "Fri, 13 Nov 2026 06:55:38 GMT",
+          "Server": "Kestrel",
+          "Accept-Ranges": "bytes",
+          "ETag": "\"1dd733bd84a634e\"",
+          "Last-Modified": "Fri, 13 Nov 2026 06:54:36 GMT",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        }
+      }
+    },
+    {
+      "name": "API viva",
+      "status": "PASS",
+      "detail": "alive"
+    },
+    {
+      "name": "Precio inválido rechazado antes del banco",
+      "status": "PASS",
+      "detail": {
+        "error": "Precio positivo, máximo 9.999.999.999,99 y dos decimales.",
+        "traceId": "0HNQ1ACG88LD6:00000001"
+      }
+    },
+    {
+      "name": "Venta vacía rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "La venta requiere un identificador y de 1 a 50 productos.",
+        "traceId": "0HNQ1ACG88LD7:00000001"
+      }
+    },
+    {
+      "name": "Cantidad cero rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Productos únicos y cantidades enteras positivas son obligatorios.",
+        "traceId": "0HNQ1ACG88LD8:00000001"
+      }
+    },
+    {
+      "name": "Detalle nulo rechazado sin error interno",
+      "status": "PASS",
+      "detail": {
+        "error": "Productos únicos y cantidades enteras positivas son obligatorios.",
+        "traceId": "0HNQ1ACG88LD9:00000001"
+      }
+    },
+    {
+      "name": "JSON malformado rechazado",
+      "status": "PASS",
+      "detail": {
+        "status": 400,
+        "bytes": 0,
+        "headers": {
+          "Content-Length": "0",
+          "Connection": "close",
+          "Date": "Fri, 13 Nov 2026 06:55:39 GMT",
+          "Server": "Kestrel",
+          "Cache-Control": "no-store",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        }
+      }
+    },
+    {
+      "name": "Origen externo rechazado",
+      "status": "PASS",
+      "detail": {
+        "error": "Origen no autorizado.",
+        "traceId": "0HNQ1ACG88LDB:00000001"
+      }
+    },
+    {
+      "name": "Paginación inválida rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Página: 1–1.000.000; tamaño: 1–100.",
+        "traceId": "0HNQ1ACG88LDC:00000001"
+      }
+    },
+    {
+      "name": "CSP y protección contra sniffing",
+      "status": "PASS",
+      "detail": "headers presentes"
+    },
+    {
+      "name": "Disponibilidad del banco",
+      "status": "BLOCKED",
+      "detail": "HTTP 503: {\"error\":\"Base de datos pendiente de configuración administrativa.\",\"traceId\":\"0HNQ1ACG88LDF:00000001\"}"
+    },
+    {
+      "name": "Cadastro persistente",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "Consulta persistente",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "Venta y actualización de stock",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "Transacción atómica",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "Idempotencia de ventas",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "Venta simultánea sin sobreventa",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "Ajuste de stock idempotente",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "BI y BA reales",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "Recursividad con datos reales",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    },
+    {
+      "name": "Persistencia tras reinicio",
+      "status": "BLOCKED",
+      "detail": "Requiere PostgreSQL configurado y accesible; no ejecutado."
+    }
+  ]
+}

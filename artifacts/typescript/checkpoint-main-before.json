@@ -1,0 +1,26 @@
+{
+  "product": {
+    "id": 13,
+    "sku": "VM13",
+    "name": "demo",
+    "category": "demo",
+    "price": 49.9,
+    "stock": 8,
+    "minimumStock": 5
+  },
+  "sale": {
+    "id": 9,
+    "requestId": "437bb231-48a9-40cd-9e98-e895be179533",
+    "total": 99.8,
+    "createdAt": "2026-11-13T11:42:32.151376Z",
+    "items": [
+      {
+        "productId": 13,
+        "sku": "VM13",
+        "name": "demo",
+        "quantity": 2,
+        "unitPrice": 49.9
+      }
+    ]
+  }
+}

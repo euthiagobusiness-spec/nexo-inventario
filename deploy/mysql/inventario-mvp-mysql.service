@@ -1,0 +1,19 @@
+[Unit]
+Description=Inventario candidato MySQL (.NET 8)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=inventario
+Group=inventario
+WorkingDirectory=/home/inventario/inventario-mvp/publish-mysql
+ExecStart=/usr/bin/dotnet /home/inventario/inventario-mvp/publish-mysql/Inventario.Api.dll --urls http://10.77.55.3:8081
+Environment=ASPNETCORE_ENVIRONMENT=Production
+EnvironmentFile=/home/inventario/.config/inventario/mysql.env
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+UMask=0077

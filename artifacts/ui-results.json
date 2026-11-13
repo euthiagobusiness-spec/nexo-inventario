@@ -1,0 +1,21 @@
+{
+  "dateLocal": "2026-11-13",
+  "environment": "Chrome en Windows 11, mediante túnel SSH 127.0.0.1:18080 hacia 10.77.55.3:8080",
+  "observations": [
+    {"test": "Dashboard cargado y navegación entre vistas", "status": "PASS"},
+    {"test": "Formulario de producto válido recibe error real 503 y conserva campos", "status": "PASS", "persisted": false},
+    {"test": "Pantalla académica identifica VentaService y sus seis while", "status": "PASS"},
+    {"test": "Venta vacía mantiene botón de confirmación deshabilitado", "status": "PASS"},
+    {"test": "Estado de navegación estabilizado", "status": "PASS", "hash": "#dashboard", "heading": "Resumen del negocio", "selectedNavCount": 1, "visibleSection": "view-dashboard"},
+    {"test": "Mensajes de error JavaScript capturados tras carga final", "status": "PASS", "capturedErrorLogs": 0},
+    {"test": "Registro y venta exitosos a través de UI", "status": "BLOCKED", "reason": "PostgreSQL inaccesible y conexión pendiente"}
+  ],
+  "responsive": [
+    {"width": 375, "height": 812, "documentWidth": 360, "horizontalPageOverflow": false},
+    {"width": 768, "height": 1024, "documentWidth": 753, "horizontalPageOverflow": false},
+    {"width": 1024, "height": 768, "documentWidth": 1009, "horizontalPageOverflow": false},
+    {"width": 1440, "height": 900, "documentWidth": 1425, "horizontalPageOverflow": false},
+    {"width": 812, "height": 375, "documentWidth": 797, "horizontalPageOverflow": false}
+  ],
+  "limitations": "Estado sin datos. No se verificaron visualmente tablas pobladas, gráficos reales, lector de pantalla, todas las combinaciones de zoom o persistencia del carrito tras éxito. No constituye auditoría WCAG."
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#122c50"><title>Nexo · Inventario</title>
+  <link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<a href="#main" class="skip">Saltar al contenido</a>
+<aside class="sidebar">
+  <a class="brand" href="#dashboard"><svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true"><path d="m16 2 13 7v14l-13 7L3 23V9zm0 0v14m13-7-13 7L3 9m13 7v14" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Nexo<small>CONTROL DE INVENTARIO</small></span></a>
+  <p class="nav-label">ESPACIO DE TRABAJO</p>
+  <nav aria-label="Navegación principal">
+    <a href="#dashboard" data-view="dashboard">01 <span>Resumen</span></a>
+    <a href="#products" data-view="products">02 <span>Productos</span></a>
+    <a href="#sales" data-view="sales">03 <span>Ventas</span></a>
+    <a href="#analytics" data-view="analytics">04 <span>Análisis y BI</span></a>
+    <a href="#academic" data-view="academic">05 <span>Proyecto académico</span></a>
+  </nav>
+  <div class="sidebar-foot"><span class="env-label">RED PRIVADA · MVP</span><p>Programación II<br>Arquitectura de tres máquinas</p></div>
+</aside>
+<div class="workspace">
+  <header class="topbar"><span>Sistema de inventario <span class="muted">/ Panel de control</span></span><button id="refresh" class="secondary" type="button">Actualizar datos</button></header>
+  <main id="main" tabindex="-1">
+    <div class="page-heading"><div><p class="eyebrow">OPERACIONES CON VISIBILIDAD</p><h1 id="page-title">Resumen del negocio</h1><p id="page-description" class="muted">Existencias, ventas y decisiones en un solo lugar.</p></div><span id="connection" class="badge neutral" role="status">Comprobando conexión…</span></div>
+    <div id="global-error" class="notice error" role="alert" hidden></div>
+    <section id="view-dashboard" class="view" aria-label="Resumen">
+      <div class="metrics" id="metrics"><article class="metric"><p>Productos</p><strong>—</strong><small>Esperando datos reales</small></article><article class="metric"><p>Unidades disponibles</p><strong>—</strong></article><article class="metric"><p>Ventas acumuladas</p><strong>—</strong></article><article class="metric"><p>Productos por reponer</p><strong>—</strong></article></div>
+      <article class="panel"><div class="panel-head"><h2>Productos recientes</h2><a href="#products" class="button">Gestionar productos</a></div><div class="table-wrap"><table><thead><tr><th>Producto</th><th>SKU</th><th>Categoría</th><th>Existencias</th><th>Precio</th><th>Estado</th></tr></thead><tbody id="recent-products"><tr><td colspan="6">Esperando conexión con MySQL.</td></tr></tbody></table></div></article>
+      <div class="two-columns"><article class="panel"><div class="panel-head"><h2>Atención a las existencias</h2><a href="#products">Ver catálogo →</a></div><div id="low-stock" class="empty">Los datos aparecerán al conectar la base de datos.</div></article><article class="panel"><div class="panel-head"><h2>Últimas ventas</h2><a href="#sales">Ver ventas →</a></div><div id="recent-sales" class="empty">Los datos aparecerán al conectar la base de datos.</div></article></div>
+    </section>
+    <section id="view-products" class="view" hidden aria-label="Productos">
+      <div id="inventory-metrics" class="metrics"><article class="metric"><p>Total de productos</p><strong>—</strong></article><article class="metric"><p>Existencias bajas</p><strong>—</strong></article><article class="metric"><p>Valor del inventario</p><strong>—</strong></article><article class="metric"><p>Unidades disponibles</p><strong>—</strong></article></div>
+      <details class="panel" id="new-product"><summary>Registrar un producto</summary>
+        <form id="product-form" class="form-grid">
+          <label>SKU<input name="sku" required maxlength="40" pattern="[A-Za-z0-9][A-Za-z0-9_-]{0,39}" placeholder="Ej. TEC-001" autocomplete="off"></label>
+          <label>Nombre<input name="name" required maxlength="120" placeholder="Nombre del producto"></label>
+          <label>Categoría<input name="category" required maxlength="60" placeholder="Ej. Tecnología"></label>
+          <label>Precio (R$)<input name="price" required type="number" min="0.01" max="9999999999.99" step="0.01" inputmode="decimal"></label>
+          <label>Existencias iniciales<input name="stock" required type="number" min="0" max="1000000" step="1" value="0"></label>
+          <label>Existencias mínimas<input name="minimumStock" required type="number" min="0" max="1000000" step="1" value="5"></label>
+          <div class="form-footer"><p class="muted">El SKU es único. Todos los campos son obligatorios.</p><button type="submit">Guardar producto</button></div>
+          <p class="form-error" role="alert" hidden></p>
+        </form>
+      </details>
+      <article class="panel"><div class="panel-head wrap"><h2>Catálogo de productos</h2><form id="search-form" class="inline"><label class="sr-only" for="search">Buscar productos</label><input id="search" placeholder="Buscar por SKU, nombre o categoría" maxlength="120" type="search"><button class="secondary" type="submit">Buscar</button></form></div>
+        <div class="table-wrap"><table><caption class="sr-only">Productos y existencias disponibles</caption><thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Existencias</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="products-body"><tr><td colspan="6">Esperando conexión.</td></tr></tbody></table></div>
+        <div class="pagination"><span id="products-page">Sin datos</span><div><button id="products-prev" class="secondary" disabled>Anterior</button><button id="products-next" class="secondary" disabled>Siguiente</button></div></div>
+      </article>
+    </section>
+    <section id="view-sales" class="view" hidden aria-label="Ventas">
+      <div class="two-columns sale-layout"><article class="panel"><h2>Nueva venta</h2><p class="muted">El servidor confirma precios y disponibilidad al procesar la venta.</p>
+        <form id="sale-search-form" class="inline"><label class="sr-only" for="sale-search">Buscar producto para vender</label><input id="sale-search" type="search" maxlength="120" placeholder="Buscar producto"><button class="secondary">Buscar</button></form>
+        <div id="sale-options" class="choice-list"></div>
+      </article><article class="panel"><h2>Detalle de la venta</h2><div id="cart" class="empty">Selecciona productos para empezar.</div><div class="sale-total"><span>Total estimado</span><strong id="cart-total">R$ 0,00</strong></div><button id="checkout" disabled>Confirmar venta</button><p id="sale-error" class="form-error" role="alert" hidden></p><p id="sale-success" role="status" hidden></p></article></div>
+      <article class="panel"><div class="panel-head"><h2>Historial de ventas</h2><span class="muted">Sin datos simulados</span></div><div class="table-wrap"><table><thead><tr><th>Venta</th><th>Fecha local</th><th>Total</th><th>Detalle</th></tr></thead><tbody id="sales-body"><tr><td colspan="4">Esperando conexión.</td></tr></tbody></table></div><div class="pagination"><span id="sales-page">Sin datos</span><div><button id="sales-prev" class="secondary" disabled>Anterior</button><button id="sales-next" class="secondary" disabled>Siguiente</button></div></div><div id="sale-detail" hidden></div></article>
+    </section>
+    <section id="view-analytics" class="view" hidden aria-label="Análisis de negocio">
+      <div class="metrics" id="bi-metrics"><article class="metric"><p>Ingresos · últimas 720 h</p><strong>—</strong></article><article class="metric"><p>Ticket medio</p><strong>—</strong></article><article class="metric"><p>Valor del inventario</p><strong>—</strong></article><article class="metric"><p>Ventas confirmadas</p><strong>—</strong></article></div>
+      <div class="two-columns"><article class="panel"><h2>Ingresos diarios</h2><p class="muted">Últimas 7 fechas del gráfico de 30 días · UTC</p><div id="daily-chart" class="empty">Esperando datos.</div></article><article class="panel"><h2>Productos más vendidos</h2><p class="muted">Unidades vendidas en las últimas 720 horas</p><div id="top-products" class="empty">Esperando datos.</div></article></div>
+      <article class="panel"><h2>Planificación de reposición · BA</h2><p id="ba-method" class="muted">Una orientación basada en demanda observada, sin predicción estadística.</p><div class="table-wrap"><table><thead><tr><th>Producto</th><th>Unid. / 30 días</th><th>Media / día</th><th>Cobertura</th><th>Compra sugerida</th></tr></thead><tbody id="ba-body"><tr><td colspan="5">Esperando datos.</td></tr></tbody></table></div><p class="muted">Máximo 100 recomendaciones. Sin demanda registrada, la cobertura se muestra como «Sin demanda».</p></article>
+    </section>
+    <section id="view-academic" class="view" hidden aria-label="Proyecto académico">
+      <article class="panel"><p class="eyebrow">ALGORITMO OBLIGATORIO</p><h2>VentaService.RegistrarVenta</h2><p>La API invoca el método académico dentro de una transacción MySQL: copia temporal de existencias, validación de detalles, cálculo de subtotales y actualización final. Se conservan los seis lazos <code>while</code> originales. Tres líneas usan <code>decimal</code> para el cálculo monetario.</p><pre><code>RegistrarVenta(Venta venta, Producto[] productos)
+Tiempo: O(n + m·n) · Memoria adicional: O(n)</code></pre><p class="muted">n: productos cargados · m: detalles de la venta. La transacción y los bloqueos de filas coordinan ventas simultáneas; el algoritmo en memoria no sustituye esa protección.</p></article>
+      <article class="panel"><p class="eyebrow">PROGRAMACIÓN II</p><h2>Tres máquinas, un sistema</h2><div class="architecture"><div><strong>Windows 11</strong><span>HTML · CSS · JavaScript</span></div><span aria-hidden="true">→</span><div><strong>Ubuntu Backend</strong><span>C# · .NET 8 · HTTP :8080</span></div><span aria-hidden="true">→</span><div><strong>Ubuntu Database</strong><span>MySQL 8 / InnoDB · Transacciones</span></div></div><p>El navegador usa la API del Backend. Solo el Backend debe conectarse a la base de datos. Una venta bloquea las filas de productos, verifica existencias y confirma todos sus cambios en una única transacción.</p></article>
+      <div class="two-columns"><article class="panel"><h2>Recursividad demostrable</h2><p>El valor del inventario se calcula dividiendo la lista en dos, sumando cada mitad y combinando los resultados. Caso base: lista vacía o un producto.</p><pre><code>T(n) = 2T(n/2) + O(1)
+Tiempo: O(n) · Pila: O(log n)</code></pre><button id="recursion" class="secondary">Ejecutar con datos reales</button><p id="recursion-result" role="status"></p></article><article class="panel"><h2>UI, UX, BI y BA</h2><dl><dt>UI</dt><dd>Jerarquía visual, formularios y tablas responsivas.</dd><dt>UX</dt><dd>Validación, mensajes claros y conservación de datos ante errores.</dd><dt>BI</dt><dd>Ingresos, ticket medio, existencias y productos más vendidos.</dd><dt>BA</dt><dd>Cobertura y propuesta de reposición a partir de demanda histórica.</dd></dl></article></div>
+      <article class="panel"><h2>Alcance académico</h2><p>Se usan referencias administradas por C#, sin punteros <code>unsafe</code>: no hay necesidad de acceso directo a memoria. La metodología, complejidad y límites están documentados en los archivos del proyecto. No incluye autenticación de usuarios, impuestos, devoluciones ni predicciones de demanda; su uso está limitado al laboratorio privado autorizado.</p></article>
+    </section>
+    <footer>PROGRAMACIÓN II <span>Inventario · MVP 1.0 · Sin dependencias de interfaz externas</span></footer>
+  </main>
+</div>
+<dialog id="stock-dialog"><div class="panel-head"><h2 id="stock-title">Control de existencias</h2><button id="stock-close" type="button" class="secondary">Cerrar</button></div><p id="stock-current"></p><form id="stock-form" class="stack"><label>Cantidad del ajuste<input name="delta" type="number" min="-1000000" max="1000000" step="1" required placeholder="Ej. 10 para entrada o -2 para salida"></label><label>Motivo<input name="reason" required maxlength="200" placeholder="Ej. Reposición del proveedor"></label><p class="muted">Usa una cantidad positiva para entrada y negativa para salida.</p><button>Registrar ajuste</button><p class="form-error" role="alert" hidden></p></form><h3>Últimos 100 movimientos</h3><div id="movements"></div></dialog>
+<div id="toast" role="status" class="toast" hidden></div>
+</body></html>

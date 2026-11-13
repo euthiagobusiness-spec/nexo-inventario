@@ -1,0 +1,21 @@
+{
+  "dateLocal": "2026-11-13",
+  "timezoneReport": "America/Manaus",
+  "environment": "Microsoft Edge dentro de WIN11-FRONTEND (10.77.55.5), observado por la consola VirtualBox",
+  "applicationUrl": "http://10.77.55.3:8080",
+  "status": "PASS",
+  "observations": [
+    {"test":"Acceso directo y conexión al banco","status":"PASS"},
+    {"test":"Alta por UI","status":"PASS","sku":"VM13","name":"demo","category":"demo","price":49.90,"initialStock":10,"minimumStock":5},
+    {"test":"Venta por UI","status":"PASS","saleId":9,"quantity":2,"total":99.80},
+    {"test":"Stock y movimiento tras venta","status":"PASS","stock":8,"saleMovement":-2,"saleId":9},
+    {"test":"Rechazo por existencias insuficientes","status":"PASS","attemptedQuantity":9,"visibleError":"Venta rechazada por VentaService: existencias insuficientes o detalle inválido."},
+    {"test":"Stock tras rechazo y recarga del navegador","status":"PASS","stock":8},
+    {"test":"BI renderizado con datos reales","status":"PASS","products":9,"stockUnits":44,"revenue":252.00,"saleCount":9,"stockValue":843.80,"averageTicket":28.00},
+    {"test":"Gráfico de ingresos","status":"PASS","dateUtc":"2026-11-13","revenue":252.00},
+    {"test":"BA del producto VM13","status":"PASS","unitsSold30":2,"dailyAverageDisplayed":0.07,"daysCover":120,"suggestedOrder":0},
+    {"test":"Recursividad desde botón de UI","status":"PASS","products":9,"value":843.80,"time":"O(n)","stack":"O(log n)"}
+  ],
+  "evidenceKind":"Observaciones visuales de la UI real, complementadas por frontend-database-proof.json",
+  "scope":"MVP académico en red privada. No constituye auditoría completa de accesibilidad ni prueba de producción pública."
+}

@@ -1,0 +1,22 @@
+[Unit]
+Description=Inventario MVP (.NET 8)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=inventario
+Group=inventario
+WorkingDirectory=/home/inventario/inventario-mvp/publish
+ExecStart=/usr/bin/dotnet /home/inventario/inventario-mvp/publish/Inventario.Api.dll --urls http://10.77.55.3:8080
+Environment=ASPNETCORE_ENVIRONMENT=Production
+EnvironmentFile=-/home/inventario/.config/inventario/backend.env
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

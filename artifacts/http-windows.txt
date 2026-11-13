@@ -1,0 +1,14 @@
+PASS HTML servido
+PASS CSS servido
+PASS JavaScript servido
+PASS API viva
+PASS Precio inv�lido rechazado antes del banco
+PASS Venta vac�a rechazada
+PASS Cantidad cero rechazada
+PASS Detalle nulo rechazado sin error interno
+PASS JSON malformado rechazado
+PASS Origen externo rechazado
+PASS Paginaci�n inv�lida rechazada
+PASS CSP y protecci�n contra sniffing
+BLOCKED PostgreSQL: flujo persistente no ejecutado
+{"PASS": 12, "FAIL": 0, "BLOCKED": 11}

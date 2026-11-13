@@ -1,0 +1,21 @@
+{
+  "timestampUtc": "2026-11-13T13:23:48.875452+00:00",
+  "status": "PASS",
+  "workspaceFolders": [
+    "Backend",
+    "Frontend",
+    "Base de datos",
+    "Implantacion",
+    "Pruebas",
+    "Documentacion",
+    "Entregables",
+    "Proyecto completo"
+  ],
+  "solutionFileReferences": 12,
+  "taskCount": 8,
+  "originalVentaServiceCheck": "PASS: original preservado; exactamente tres líneas monetarias adaptadas; todos los while intactos.",
+  "localDotnetSdkInstalled": false,
+  "csharpExtensionInstalled": false,
+  "localBuildAndDebugTested": false,
+  "vmDeploymentChanged": false
+}

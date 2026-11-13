@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Nexo: Backend TypeScript",
+      "type": "node", "request": "launch",
+      "preLaunchTask": "Backend y Frontend: compilar TypeScript",
+      "program": "${workspaceFolder:Proyecto completo}/dist/backend/src/server.js",
+      "cwd": "${workspaceFolder:Proyecto completo}",
+      "env": { "HOST": "127.0.0.1", "PORT": "5080" },
+      "console": "integratedTerminal", "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

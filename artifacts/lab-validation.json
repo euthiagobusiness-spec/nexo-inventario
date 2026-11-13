@@ -1,0 +1,10 @@
+{
+  "timestampUtc": "2026-11-13T07:20:43.285936+00:00",
+  "backend": "User=inventario\nActiveState=active\nSubState=running\nUnitFileState=enabled\n600\n",
+  "database": "active\nState  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\nLISTEN 0      4096         0.0.0.0:22        0.0.0.0:*          \nLISTEN 0      200       10.77.55.4:5432      0.0.0.0:*          \nLISTEN 0      200        127.0.0.1:5432      0.0.0.0:*          \nLISTEN 0      4096   127.0.0.53%lo:53        0.0.0.0:*          \nLISTEN 0      4096      127.0.0.54:53        0.0.0.0:*          \nLISTEN 0      4096            [::]:22           [::]:*          \n",
+  "deniedOrigin": "10.77.55.4",
+  "networkRejectionPass": true,
+  "networkRejectionDiagnostic": "psql: error: connection to server at \"10.77.55.4\", port 5432 failed: FATAL:  pg_hba.conf rejects connection for host \"10.77.55.4\", user \"inventario_app\", database \"inventario_db\", SSL encryption\nconnection to server at \"10.77.55.4\", port 5432 failed: FATAL:  pg_hba.conf rejects connection for host \"10.77.55.4\", user \"inventario_app\", database \"inventario_db\", no encryption\n",
+  "frontendVm": "10.77.55.5",
+  "frontendUi": "PENDING: user stopped Computer Use"
+}

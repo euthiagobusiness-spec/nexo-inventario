@@ -1,0 +1,23 @@
+{
+  "machine": "ubuntu-backend",
+  "timestampUtc": "2026-11-13T06:57:23.793909+00:00",
+  "results": [
+    {
+      "host": "10.77.55.3",
+      "port": 8080,
+      "reachable": true
+    },
+    {
+      "host": "10.77.55.4",
+      "port": 5432,
+      "reachable": false,
+      "error": "ConnectionRefusedError"
+    },
+    {
+      "host": "127.0.0.1",
+      "port": 5432,
+      "reachable": false,
+      "error": "ConnectionRefusedError"
+    }
+  ]
+}

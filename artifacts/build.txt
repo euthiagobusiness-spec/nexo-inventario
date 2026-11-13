@@ -1,0 +1,5 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+MSBuild version 17.8.64+8859a167a for .NET
+  Inventario.Api -> /home/inventario/inventario-mvp/src/Inventario.Api/bin/Release/net8.0/Inventario.Api.dll
+  Inventario.Api -> /home/inventario/inventario-mvp/publish-staging/

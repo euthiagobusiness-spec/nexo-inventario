@@ -1,0 +1,299 @@
+{
+  "timestampUtc": "2026-11-13T13:46:03.243043+00:00",
+  "baseUrl": "http://10.77.55.3:8082",
+  "testPrefix": "QA-B0F8F7BDCF",
+  "counts": {
+    "PASS": 33,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "results": [
+    {
+      "name": "HTML servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 12789,
+        "headers": {
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+          "Content-Type": "text/html; charset=utf-8",
+          "Content-Length": "12908",
+          "Date": "Fri, 13 Nov 2026 13:46:02 GMT",
+          "Connection": "close"
+        }
+      }
+    },
+    {
+      "name": "CSS servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 10393,
+        "headers": {
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+          "Content-Type": "text/css",
+          "Content-Length": "10393",
+          "Date": "Fri, 13 Nov 2026 13:46:02 GMT",
+          "Connection": "close"
+        }
+      }
+    },
+    {
+      "name": "JavaScript servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 18362,
+        "headers": {
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+          "Content-Type": "text/javascript",
+          "Content-Length": "18410",
+          "Date": "Fri, 13 Nov 2026 13:46:02 GMT",
+          "Connection": "close"
+        }
+      }
+    },
+    {
+      "name": "API viva",
+      "status": "PASS",
+      "detail": "alive"
+    },
+    {
+      "name": "Precio inválido rechazado antes del banco",
+      "status": "PASS",
+      "detail": {
+        "error": "Importe positivo con máximo dos decimales.",
+        "traceId": "8b9c7bfb-4b4a-4180-b32a-373f66208ce1"
+      }
+    },
+    {
+      "name": "Venta vacía rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "La venta requiere de 1 a 50 productos.",
+        "traceId": "fe8cfb73-4fd6-4aa1-ab3d-7b5363db080a"
+      }
+    },
+    {
+      "name": "Cantidad cero rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Cantidad o identificador entero fuera del límite.",
+        "traceId": "0f9c6c13-c096-42dd-9948-8e2b3dc77052"
+      }
+    },
+    {
+      "name": "Detalle nulo rechazado sin error interno",
+      "status": "PASS",
+      "detail": {
+        "error": "Solicitud JSON no válida.",
+        "traceId": "9eef4674-8d49-49ea-877c-8c6ac52f0ebe"
+      }
+    },
+    {
+      "name": "JSON malformado rechazado",
+      "status": "PASS",
+      "detail": {
+        "error": "Solicitud JSON no válida.",
+        "traceId": "dbd5f45e-d639-4d1b-9f33-3ac24230d4cd"
+      }
+    },
+    {
+      "name": "Origen externo rechazado",
+      "status": "PASS",
+      "detail": {
+        "error": "Origen no autorizado.",
+        "traceId": "9f60357f-a0de-4a36-8e4e-673375efd7cb"
+      }
+    },
+    {
+      "name": "Paginación inválida rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Cantidad o identificador entero fuera del límite.",
+        "traceId": "717c4239-1b4e-4b11-9aba-48266ee3e971"
+      }
+    },
+    {
+      "name": "CSP y protección contra sniffing",
+      "status": "PASS",
+      "detail": "headers presentes"
+    },
+    {
+      "name": "Cadastro persistente",
+      "status": "PASS",
+      "detail": {
+        "id": 17,
+        "sku": "QA-B0F8F7BDCF",
+        "name": "Producto QA conservado",
+        "category": "Pruebas",
+        "price": 12.35,
+        "stock": 10,
+        "minimumStock": 2
+      }
+    },
+    {
+      "name": "Consulta del producto",
+      "status": "PASS",
+      "detail": "stock=10"
+    },
+    {
+      "name": "SKU duplicado rechazado",
+      "status": "PASS",
+      "detail": {
+        "error": "Conflicto de inventario o identificador duplicado.",
+        "traceId": "70df1f6c-3faa-4677-9d2d-5c21d4582f60"
+      }
+    },
+    {
+      "name": "Venta mediante VentaService TypeScript portado",
+      "status": "PASS",
+      "detail": {
+        "id": 12,
+        "requestId": "11ddd05c-166a-4450-b0f6-95b3f27da699",
+        "total": 37.05,
+        "createdAt": "2026-11-13T13:46:02.805971Z",
+        "items": [
+          {
+            "productId": 17,
+            "sku": "QA-B0F8F7BDCF",
+            "name": "Producto QA conservado",
+            "quantity": 3,
+            "unitPrice": 12.35
+          }
+        ]
+      }
+    },
+    {
+      "name": "Total monetario y stock persistidos",
+      "status": "PASS",
+      "detail": "total=37.05 stock=7"
+    },
+    {
+      "name": "Reintento de venta idempotente",
+      "status": "PASS",
+      "detail": "misma venta; sin segundo descuento"
+    },
+    {
+      "name": "Reutilización de ID con otro contenido rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Identificador reutilizado con otra venta.",
+        "traceId": "e7cd645a-89ce-44ad-942f-d67e476273f8"
+      }
+    },
+    {
+      "name": "Detalle de venta persistido",
+      "status": "PASS",
+      "detail": {
+        "id": 12,
+        "requestId": "11ddd05c-166a-4450-b0f6-95b3f27da699",
+        "total": 37.05,
+        "createdAt": "2026-11-13T13:46:02.805971Z",
+        "items": [
+          {
+            "productId": 17,
+            "sku": "QA-B0F8F7BDCF",
+            "name": "Producto QA conservado",
+            "quantity": 3,
+            "unitPrice": 12.35
+          }
+        ]
+      }
+    },
+    {
+      "name": "Venta insuficiente rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Venta rechazada por VentaService: existencias insuficientes o detalle inválido.",
+        "traceId": "0fa20162-9430-4129-a84b-9da52a35d9c0"
+      }
+    },
+    {
+      "name": "Rechazo conserva stock",
+      "status": "PASS",
+      "detail": "stock=7"
+    },
+    {
+      "name": "Entrada de stock",
+      "status": "PASS",
+      "detail": "stock=9"
+    },
+    {
+      "name": "Ajuste idempotente",
+      "status": "PASS",
+      "detail": "stock=9 sin duplicación"
+    },
+    {
+      "name": "Salida que produciría stock negativo rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "El ajuste dejaría las existencias fuera de 0–1.000.000.",
+        "traceId": "242a2aff-55af-48c5-a626-ecb23a9b036f"
+      }
+    },
+    {
+      "name": "Producto para competencia de ventas",
+      "status": "PASS",
+      "detail": {
+        "id": 19,
+        "sku": "QA-B0F8F7BDCF-R",
+        "name": "QA concurrencia",
+        "category": "Pruebas",
+        "price": 1,
+        "stock": 1,
+        "minimumStock": 0
+      }
+    },
+    {
+      "name": "Transacción multiproducto rechazada sin cambios parciales",
+      "status": "PASS",
+      "detail": {
+        "error": "Venta rechazada por VentaService: existencias insuficientes o detalle inválido.",
+        "traceId": "f6c35a15-ee8b-4807-803e-78c4b5e14840"
+      }
+    },
+    {
+      "name": "Atomicidad: ambos stocks intactos",
+      "status": "PASS",
+      "detail": "stocks 9 y 1"
+    },
+    {
+      "name": "Ventas simultáneas: una acepta, otra rechaza",
+      "status": "PASS",
+      "detail": {
+        "codes": [
+          200,
+          409
+        ],
+        "stock": 0
+      }
+    },
+    {
+      "name": "Trazabilidad de movimientos",
+      "status": "PASS",
+      "detail": "movimientos presentes"
+    },
+    {
+      "name": "BI y BA consultan datos persistentes",
+      "status": "PASS",
+      "detail": "indicadores obtenidos del banco"
+    },
+    {
+      "name": "Recursividad con datos persistentes",
+      "status": "PASS",
+      "detail": "recursividad ejecutada"
+    },
+    {
+      "name": "Persistencia en otra conexión HTTP",
+      "status": "PASS",
+      "detail": "stock releído=9"
+    }
+  ]
+}

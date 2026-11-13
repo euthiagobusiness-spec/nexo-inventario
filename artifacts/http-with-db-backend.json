@@ -1,0 +1,321 @@
+{
+  "timestampUtc": "2026-11-13T07:08:15.080440+00:00",
+  "baseUrl": "http://10.77.55.3:8080",
+  "testPrefix": "QA-63575A73A1",
+  "counts": {
+    "PASS": 33,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "results": [
+    {
+      "name": "HTML servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 12690,
+        "headers": {
+          "Content-Length": "12811",
+          "Connection": "close",
+          "Content-Type": "text/html",
+          "Date": "Fri, 13 Nov 2026 07:08:14 GMT",
+          "Server": "Kestrel",
+          "Accept-Ranges": "bytes",
+          "ETag": "\"1dd733bd84a6c0b\"",
+          "Last-Modified": "Fri, 13 Nov 2026 06:54:36 GMT",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        }
+      }
+    },
+    {
+      "name": "CSS servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 10393,
+        "headers": {
+          "Content-Length": "10393",
+          "Connection": "close",
+          "Content-Type": "text/css",
+          "Date": "Fri, 13 Nov 2026 07:08:14 GMT",
+          "Server": "Kestrel",
+          "Accept-Ranges": "bytes",
+          "ETag": "\"1dd733942151019\"",
+          "Last-Modified": "Fri, 13 Nov 2026 06:36:05 GMT",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        }
+      }
+    },
+    {
+      "name": "JavaScript servido",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "bytes": 15647,
+        "headers": {
+          "Content-Length": "15694",
+          "Connection": "close",
+          "Content-Type": "text/javascript",
+          "Date": "Fri, 13 Nov 2026 07:08:14 GMT",
+          "Server": "Kestrel",
+          "Accept-Ranges": "bytes",
+          "ETag": "\"1dd733bd84a634e\"",
+          "Last-Modified": "Fri, 13 Nov 2026 06:54:36 GMT",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        }
+      }
+    },
+    {
+      "name": "API viva",
+      "status": "PASS",
+      "detail": "alive"
+    },
+    {
+      "name": "Precio inválido rechazado antes del banco",
+      "status": "PASS",
+      "detail": {
+        "error": "Precio positivo, máximo 9.999.999.999,99 y dos decimales.",
+        "traceId": "0HNQ1AJH04VC9:00000001"
+      }
+    },
+    {
+      "name": "Venta vacía rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "La venta requiere un identificador y de 1 a 50 productos.",
+        "traceId": "0HNQ1AJH04VCA:00000001"
+      }
+    },
+    {
+      "name": "Cantidad cero rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Productos únicos y cantidades enteras positivas son obligatorios.",
+        "traceId": "0HNQ1AJH04VCB:00000001"
+      }
+    },
+    {
+      "name": "Detalle nulo rechazado sin error interno",
+      "status": "PASS",
+      "detail": {
+        "error": "Productos únicos y cantidades enteras positivas son obligatorios.",
+        "traceId": "0HNQ1AJH04VCC:00000001"
+      }
+    },
+    {
+      "name": "JSON malformado rechazado",
+      "status": "PASS",
+      "detail": {
+        "status": 400,
+        "bytes": 0,
+        "headers": {
+          "Content-Length": "0",
+          "Connection": "close",
+          "Date": "Fri, 13 Nov 2026 07:08:14 GMT",
+          "Server": "Kestrel",
+          "Cache-Control": "no-store",
+          "X-Content-Type-Options": "nosniff",
+          "Referrer-Policy": "same-origin",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        }
+      }
+    },
+    {
+      "name": "Origen externo rechazado",
+      "status": "PASS",
+      "detail": {
+        "error": "Origen no autorizado.",
+        "traceId": "0HNQ1AJH04VCE:00000001"
+      }
+    },
+    {
+      "name": "Paginación inválida rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Página: 1–1.000.000; tamaño: 1–100.",
+        "traceId": "0HNQ1AJH04VCF:00000001"
+      }
+    },
+    {
+      "name": "CSP y protección contra sniffing",
+      "status": "PASS",
+      "detail": "headers presentes"
+    },
+    {
+      "name": "Cadastro persistente",
+      "status": "PASS",
+      "detail": {
+        "id": 1,
+        "sku": "QA-63575A73A1",
+        "name": "Producto QA conservado",
+        "category": "Pruebas",
+        "price": 12.35,
+        "stock": 10,
+        "minimumStock": 2
+      }
+    },
+    {
+      "name": "Consulta del producto",
+      "status": "PASS",
+      "detail": "stock=10"
+    },
+    {
+      "name": "SKU duplicado rechazado",
+      "status": "PASS",
+      "detail": {
+        "error": "El SKU o identificador ya existe.",
+        "traceId": "0HNQ1AJH04VCL:00000001"
+      }
+    },
+    {
+      "name": "Venta mediante VentaService",
+      "status": "PASS",
+      "detail": {
+        "id": 1,
+        "requestId": "fc5a43ac-f4cc-42c2-a802-5a5a7c8e933f",
+        "total": 37.05,
+        "createdAt": "2026-11-13T07:08:14.682817Z",
+        "items": [
+          {
+            "productId": 1,
+            "sku": "QA-63575A73A1",
+            "name": "Producto QA conservado",
+            "quantity": 3,
+            "unitPrice": 12.35
+          }
+        ]
+      }
+    },
+    {
+      "name": "Total monetario y stock persistidos",
+      "status": "PASS",
+      "detail": "total=37.05 stock=7"
+    },
+    {
+      "name": "Reintento de venta idempotente",
+      "status": "PASS",
+      "detail": "misma venta; sin segundo descuento"
+    },
+    {
+      "name": "Reutilización de ID con otro contenido rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Identificador reutilizado con otra venta.",
+        "traceId": "0HNQ1AJH04VCQ:00000001"
+      }
+    },
+    {
+      "name": "Detalle de venta persistido",
+      "status": "PASS",
+      "detail": {
+        "id": 1,
+        "requestId": "fc5a43ac-f4cc-42c2-a802-5a5a7c8e933f",
+        "total": 37.05,
+        "createdAt": "2026-11-13T07:08:14.682817Z",
+        "items": [
+          {
+            "productId": 1,
+            "sku": "QA-63575A73A1",
+            "name": "Producto QA conservado",
+            "quantity": 3,
+            "unitPrice": 12.35
+          }
+        ]
+      }
+    },
+    {
+      "name": "Venta insuficiente rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "Venta rechazada por VentaService: existencias insuficientes o detalle inválido.",
+        "traceId": "0HNQ1AJH04VCS:00000001"
+      }
+    },
+    {
+      "name": "Rechazo conserva stock",
+      "status": "PASS",
+      "detail": "stock=7"
+    },
+    {
+      "name": "Entrada de stock",
+      "status": "PASS",
+      "detail": "stock=9"
+    },
+    {
+      "name": "Ajuste idempotente",
+      "status": "PASS",
+      "detail": "stock=9 sin duplicación"
+    },
+    {
+      "name": "Salida que produciría stock negativo rechazada",
+      "status": "PASS",
+      "detail": {
+        "error": "El ajuste dejaría las existencias fuera de 0–1.000.000.",
+        "traceId": "0HNQ1AJH04VD1:00000001"
+      }
+    },
+    {
+      "name": "Producto para competencia de ventas",
+      "status": "PASS",
+      "detail": {
+        "id": 3,
+        "sku": "QA-63575A73A1-R",
+        "name": "QA concurrencia",
+        "category": "Pruebas",
+        "price": 1.0,
+        "stock": 1,
+        "minimumStock": 0
+      }
+    },
+    {
+      "name": "Transacción multiproducto rechazada sin cambios parciales",
+      "status": "PASS",
+      "detail": {
+        "error": "Venta rechazada por VentaService: existencias insuficientes o detalle inválido.",
+        "traceId": "0HNQ1AJH04VD3:00000001"
+      }
+    },
+    {
+      "name": "Atomicidad: ambos stocks intactos",
+      "status": "PASS",
+      "detail": "stocks 9 y 1"
+    },
+    {
+      "name": "Ventas simultáneas: una acepta, otra rechaza",
+      "status": "PASS",
+      "detail": {
+        "codes": [
+          200,
+          409
+        ],
+        "stock": 0
+      }
+    },
+    {
+      "name": "Trazabilidad de movimientos",
+      "status": "PASS",
+      "detail": "movimientos presentes"
+    },
+    {
+      "name": "BI y BA consultan datos persistentes",
+      "status": "PASS",
+      "detail": "indicadores obtenidos del banco"
+    },
+    {
+      "name": "Recursividad con datos persistentes",
+      "status": "PASS",
+      "detail": "recursividad ejecutada"
+    },
+    {
+      "name": "Persistencia en otra conexión HTTP",
+      "status": "PASS",
+      "detail": "stock releído=9"
+    }
+  ]
+}

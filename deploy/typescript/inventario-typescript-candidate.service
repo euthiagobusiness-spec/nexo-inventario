@@ -1,0 +1,24 @@
+[Unit]
+Description=Nexo TypeScript candidato
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=inventario
+Group=inventario
+WorkingDirectory=/home/inventario/inventario-typescript
+ExecStart=/home/inventario/.local/lib/node-v24.19.0-linux-x64/bin/node /home/inventario/inventario-typescript/dist/backend/src/server.js
+Environment=NODE_ENV=production
+Environment=HOST=10.77.55.3
+Environment=PORT=8082
+EnvironmentFile=/home/inventario/.config/inventario/mysql.env
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

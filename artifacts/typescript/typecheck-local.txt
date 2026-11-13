@@ -1,0 +1,3 @@
+
+> nexo-inventario@2.0.0 typecheck
+> tsc -p backend/tsconfig.json --noEmit && tsc -p frontend/tsconfig.json --noEmit

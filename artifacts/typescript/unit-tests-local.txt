@@ -1,0 +1,56 @@
+
+> nexo-inventario@2.0.0 test
+> npm run build && node --test dist/backend/tests/*.test.js
+
+
+> nexo-inventario@2.0.0 build
+> tsc -p backend/tsconfig.json && tsc -p frontend/tsconfig.json && node tools/copy-static.mjs
+
+Frontend compilado: C:\Users\euthi\OneDrive\Documentos\ChatGPT\Projeto-Inventario\dist\frontend\
+✔ VentaService: venta válida, subtotales y stocks (4.4773ms)
+✔ VentaService: stock insuficiente conserva todos los productos (0.1482ms)
+✔ VentaService: producto inexistente (0.103ms)
+✔ VentaService: cantidad cero (0.0776ms)
+✔ VentaService: cantidad negativa (0.0858ms)
+✔ VentaService: duplicados acumulan contra copia temporal (0.0777ms)
+✔ VentaService: agotamiento exacto (0.1248ms)
+✔ VentaService: 0.1 + 0.2 exacto (0.0959ms)
+✔ VentaService: importe máximo conserva centavos (0.1035ms)
+✔ API: normaliza SKU y texto (0.3387ms)
+✔ API: rechaza precio negativo (0.3958ms)
+✔ API: rechaza más de dos decimales (0.138ms)
+✔ API: rechaza stock negativo (0.1836ms)
+✔ API: rechaza SKU inválido (0.1012ms)
+✔ API: rechaza nombre vacío (0.0584ms)
+✔ API: rechaza venta vacía (1.9846ms)
+✔ API: rechaza detalle nulo (0.2118ms)
+✔ API: rechaza productos duplicados (0.1111ms)
+✔ API: rechaza UUID vacío (0.0666ms)
+✔ API: rechaza más de 50 detalles (0.1046ms)
+✔ API: ordena productos para bloquear (0.0878ms)
+✔ Recursividad: vacío (0.0778ms)
+✔ Recursividad: un producto (0.0526ms)
+✔ Recursividad: 100001 productos (69.6989ms)
+✔ Dinero: conserva centavos al cambiar de número JSON a cadena (0.1366ms)
+✔ Dinero: redondeo al par compatible con decimal.Round (0.0739ms)
+✔ API: rechaza tipos incorrectos y números no seguros (0.176ms)
+✔ API: ajuste exige motivo, UUID y cantidad no nula (0.1146ms)
+✔ API: paginación restringe límites (0.1736ms)
+✔ HTTP: sirve HTML, CSS y JavaScript compilado (55.8795ms)
+✔ HTTP: proceso identifica TypeScript y banco ausente devuelve 503 (12.5561ms)
+✔ HTTP: entrada inválida rechazada antes del banco (4.8495ms)
+✔ HTTP: JSON malformado devuelve 400 (2.9908ms)
+✔ HTTP: venta nula y detalle nulo devuelven 400 (9.1766ms)
+✔ HTTP: origen externo rechazado (4.0414ms)
+✔ HTTP: cuerpo mayor de 64 KiB rechazado (6.2576ms)
+✔ HTTP: CSP, no-sniff y no-store presentes (3.5616ms)
+✔ HTTP: paginación inválida rechazada antes del banco (1.2941ms)
+✔ HTTP: no expone código fuente ni archivos privados (8.8418ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 464.9245

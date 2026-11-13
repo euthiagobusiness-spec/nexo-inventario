@@ -1,0 +1,26 @@
+{
+  "product": {
+    "id": 6,
+    "sku": "QA-1DAC83AC42-R",
+    "name": "QA concurrencia",
+    "category": "Pruebas",
+    "price": 1.0,
+    "stock": 0,
+    "minimumStock": 0
+  },
+  "sale": {
+    "id": 4,
+    "requestId": "73833dae-c553-454b-b876-0d45aa4e9670",
+    "total": 1.0,
+    "createdAt": "2026-11-13T07:09:36.348776Z",
+    "items": [
+      {
+        "productId": 6,
+        "sku": "QA-1DAC83AC42-R",
+        "name": "QA concurrencia",
+        "quantity": 1,
+        "unitPrice": 1.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+# Propuesta para revisar con administrador. No sustituir a ciegas el archivo existente.
+# Conservar primero las reglas Unix-socket locales existentes.
+# En las reglas TCP, esta autorización debe anteceder a cualquier regla más amplia.
+host    inventario_db    inventario_app    10.77.55.3/32    scram-sha-256
+# Las conexiones TCP de otros orígenes privados/remotos deben rechazarse.
+# Mantener autorizaciones loopback locales ya aprobadas ANTES de estos rechazos.
+host    all              all               10.77.55.0/24    reject
+host    all              all               0.0.0.0/0        reject
+host    all              all               ::/0             reject

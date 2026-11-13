@@ -1,0 +1,48 @@
+{
+  "timestampUtc": "2026-11-13T11:47:31.272774+00:00",
+  "status": "PASS",
+  "checks": {
+    "sku_persisted": true,
+    "price_stock_persisted": true,
+    "only_one_sale": true,
+    "sale_9_quantity_total": true,
+    "initial_and_sale_movements": true,
+    "no_negative_stock": true
+  },
+  "databaseRecords": {
+    "product": {
+      "id": 13,
+      "sku": "VM13",
+      "name": "demo",
+      "category": "demo",
+      "price": 49.9,
+      "stock": 8,
+      "minimum_stock": 5
+    },
+    "sales": [
+      {
+        "id": 9,
+        "total": 99.8,
+        "quantity": 2,
+        "unit_price": 49.9
+      }
+    ],
+    "movements": [
+      {
+        "id": 21,
+        "delta": 10,
+        "reason": "Existencias iniciales",
+        "sale_id": null
+      },
+      {
+        "id": 22,
+        "delta": -2,
+        "reason": "Venta",
+        "sale_id": 9
+      }
+    ],
+    "negativeStockCount": 0,
+    "productCount": 9,
+    "salesCount": 9
+  }
+}

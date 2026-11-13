@@ -1,0 +1,45 @@
+Salida de inventario: A
+Salida de inventario: B
+Venta registrada.
+Total: 0.40
+PASS VentaService: venta válida calcula total y actualiza stock
+Stock insuficiente.
+PASS VentaService: falta de stock conserva todos los productos
+Producto no encontrado.
+PASS VentaService: producto inexistente
+Cantidad incorrecta.
+PASS VentaService: cantidad cero
+Cantidad incorrecta.
+PASS VentaService: cantidad negativa
+Stock insuficiente.
+PASS VentaService: detalles repetidos usan stock temporal acumulado
+Salida de inventario: B
+Venta registrada.
+Total: 0.60
+PASS VentaService: agotamiento exacto
+Salida de inventario: A
+Salida de inventario: B
+Venta registrada.
+Total: 0.30
+PASS VentaService: cálculo decimal exacto 0.1 + 0.2
+Salida de inventario: Límite
+Venta registrada.
+Total: 9999999999990000.00
+PASS VentaService: límite monetario sin pérdida de centavos
+PASS API: normaliza SKU y texto
+PASS API: rechaza precio negativo
+PASS API: rechaza más de dos decimales
+PASS API: rechaza stock negativo
+PASS API: rechaza SKU inválido
+PASS API: rechaza nombre vacío
+PASS API: rechaza venta vacía
+PASS API: rechaza detalle nulo
+PASS API: rechaza productos duplicados
+PASS API: rechaza identificador vacío
+PASS API: rechaza más de 50 líneas
+PASS API: ordena IDs para bloquear sin orden inverso
+PASS Recursividad: vacío
+PASS Recursividad: un producto
+PASS Recursividad: 100.001 productos y profundidad logarítmica
+RESULT passed=24 failed=0
+PASS: original preservado; exactamente tres líneas monetarias adaptadas; todos los while intactos.

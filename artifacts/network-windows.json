@@ -1,0 +1,24 @@
+{
+  "machine": "Server-Safe",
+  "timestampUtc": "2026-11-13T06:57:31.637330+00:00",
+  "results": [
+    {
+      "host": "10.77.55.3",
+      "port": 8080,
+      "reachable": false,
+      "error": "TimeoutError"
+    },
+    {
+      "host": "10.77.55.4",
+      "port": 5432,
+      "reachable": false,
+      "error": "TimeoutError"
+    },
+    {
+      "host": "127.0.0.1",
+      "port": 5432,
+      "reachable": false,
+      "error": "ConnectionRefusedError"
+    }
+  ]
+}

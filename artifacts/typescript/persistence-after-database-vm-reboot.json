@@ -1,0 +1,6 @@
+{
+  "label": "database-vm-reboot",
+  "timestampUtc": "2026-11-13T14:10:24.555127+00:00",
+  "status": "FAIL",
+  "error": "RuntimeError: SSH/comando no disponible en puerto 2222"
+}

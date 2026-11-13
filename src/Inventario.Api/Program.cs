@@ -1,0 +1,83 @@
+using Inventario;
+using MySqlConnector;
+using System.Text.Json;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(options => options.Limits.MaxRequestBodySize = 65536);
+builder.Services.AddSingleton<InventoryStore>();
+var app = builder.Build();
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+    context.Response.Headers["Referrer-Policy"] = "same-origin";
+    context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'";
+    if (context.Request.Path.StartsWithSegments("/api")) context.Response.Headers.CacheControl = "no-store";
+    try
+    {
+        if (context.Request.Method is "POST" or "PUT" or "DELETE" or "PATCH")
+        {
+            var origin = context.Request.Headers.Origin.ToString();
+            if (context.Request.Headers["Sec-Fetch-Site"] == "cross-site" ||
+                (origin.Length > 0 && origin != $"{context.Request.Scheme}://{context.Request.Host}"))
+                throw new DomainError(403, "Origen no autorizado.");
+        }
+        await next(context);
+    }
+    catch (Exception ex) when (!context.Response.HasStarted)
+    {
+        var (status, message) = ex switch
+        {
+            DomainError error => (error.Status, error.Message),
+            BadHttpRequestException => (400, "Solicitud JSON no válida."),
+            JsonException => (400, "Solicitud JSON no válida."),
+            MySqlException { Number: 1062 } => (409, "El SKU o identificador ya existe."),
+            MySqlException { Number: 1264 or 1406 or 3819 } => (400, "El valor supera un límite permitido."),
+            MySqlException { Number: 1213 or 1205 } => (409, "Conflicto temporal de inventario. Reintente la misma solicitud."),
+            MySqlException => (503, "Base de datos no disponible. Verifique conexión y esquema."),
+            _ => (500, "No fue posible completar la operación.")
+        };
+        // No registrar excepciones completas: pueden incluir información de conexión.
+        app.Logger.LogWarning("Solicitud fallida: {Type}; HTTP {Status}", ex.GetType().Name, status);
+        context.Response.StatusCode = status;
+        await context.Response.WriteAsJsonAsync(new { error = message, traceId = context.TraceIdentifier });
+    }
+});
+app.UseDefaultFiles();
+app.UseStaticFiles();
+app.MapGet("/api/health/live", () => Results.Ok(new { status = "alive", version = "1.0.0" }));
+app.MapGet("/api/health/ready", async (InventoryStore store, CancellationToken ct) =>
+{
+    await store.Check(ct);
+    return Results.Ok(new { status = "ready", database = "MySQL", schema = 1 });
+});
+app.MapGet("/api/products", async (string? search, int? page, int? pageSize, InventoryStore store, CancellationToken ct) =>
+    Results.Ok(await store.Products(search, page ?? 1, pageSize ?? 20, ct)));
+app.MapGet("/api/products/{id:long}", async (long id, InventoryStore store, CancellationToken ct) =>
+    Results.Ok(await store.Product(id, ct)));
+app.MapPost("/api/products", async (ProductInput input, InventoryStore store, CancellationToken ct) =>
+{
+    var product = await store.Create(Rules.Product(input), ct);
+    return Results.Created($"/api/products/{product.Id}", product);
+});
+app.MapPost("/api/products/{id:long}/stock", async (long id, StockInput input, InventoryStore store, CancellationToken ct) =>
+    Results.Ok(await store.Adjust(id, input, ct)));
+app.MapGet("/api/products/{id:long}/movements", async (long id, InventoryStore store, CancellationToken ct) =>
+    Results.Ok(await store.Movements(id, ct)));
+app.MapPost("/api/sales", async (SaleInput input, InventoryStore store, CancellationToken ct) =>
+{
+    var lines = Rules.Sale(input);
+    var sale = await store.Sell(input.RequestId, lines, ct);
+    return Results.Ok(sale);
+});
+app.MapGet("/api/sales", async (int? page, int? pageSize, InventoryStore store, CancellationToken ct) =>
+    Results.Ok(await store.Sales(page ?? 1, pageSize ?? 20, ct)));
+app.MapGet("/api/sales/{id:long}", async (long id, InventoryStore store, CancellationToken ct) =>
+    Results.Ok(await store.SaleDetail(id, ct)));
+app.MapGet("/api/analytics", async (InventoryStore store, CancellationToken ct) => Results.Ok(await store.Analytics(ct)));
+app.MapGet("/api/academic/recursion", async (InventoryStore store, CancellationToken ct) =>
+{
+    var products = await store.AllProducts(ct);
+    return Results.Ok(new { algorithm = "Suma recursiva por división y conquista", products = products.Count,
+        value = Rules.RecursiveValue(products, 0, products.Count), timeComplexity = "O(n)", stackComplexity = "O(log n)" });
+});
+app.Run();
