@@ -10,7 +10,11 @@ Fuentes completas disponibles en el workspace: Frontend y Backend TypeScript, co
 
 La arquitectura documentada tiene tres roles y tres VMs identificadas. No se dispone de evidencia de otras tres máquinas adicionales. El frontend se ejecuta en el navegador de Windows; Backend sirve sus archivos estáticos además de la API.
 
-## Verificación de esta entrega
+## Continuación con las tres máquinas encendidas
+
+Después de la primera publicación se autenticó localmente el acceso a ambos Ubuntus, se compararon fuentes y compilados, se verificó el panel en Windows y se exportaron las siete tablas QA/demo. El estado vigente y las evidencias directas están en [VALIDACION_TRES_VMS.md](VALIDACION_TRES_VMS.md). PostgreSQL está inactivo/deshabilitado con datos conservados.
+
+## Verificación de la primera publicación (histórico)
 
 - Identidad GitHub confirmada como cuenta personal `euthiagobusiness-spec`.
 - Instalación reproducible con `npm ci --ignore-scripts` aprobada.
@@ -46,6 +50,6 @@ Los comandos de consulta comprueban el funcionamiento actual cuando se ejecutan;
 
 ## Límites de publicación
 
-El enlace GitHub permite revisar y descargar el proyecto. No es una aplicación web desplegada en Internet ni una copia ejecutable de las VMs. No se publican datos de acceso, certificados privados, respaldos ni discos virtuales. La cuenta MySQL del laboratorio está limitada al Backend autorizado; clonar desde otro equipo no concede acceso al banco.
+El enlace GitHub permite revisar y descargar el proyecto. No es una aplicación web desplegada en Internet ni una copia ejecutable de las VMs. La continuación incorpora `db/mysql/demo-data.sql`, exportación revisada de los registros académicos de la aplicación. No se publican cuentas del motor, datos de acceso, certificados privados, respaldos privados ni discos virtuales. La cuenta MySQL del laboratorio está limitada al Backend autorizado; clonar desde otro equipo no concede acceso al banco.
 
-Los documentos antiguos conservan sus resultados originales, incluso bloqueos posteriormente resueltos. Para el estado de la entrega se utiliza este documento junto con el README; para estudiar las etapas anteriores se consultan sus informes específicos.
+Los documentos antiguos conservan sus resultados originales, incluso bloqueos posteriormente resueltos. Para el estado de la entrega se utiliza [la validación directa de las tres VMs](VALIDACION_TRES_VMS.md) junto con el README; para estudiar las etapas anteriores se consultan sus informes específicos.

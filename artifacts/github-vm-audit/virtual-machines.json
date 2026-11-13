@@ -1,0 +1,39 @@
+{
+  "timestampUtc": "2026-11-13T19:33:44.658136+00:00",
+  "virtualization": "Oracle VirtualBox",
+  "machines": [
+    {
+      "name": "WIN11-FRONTEND",
+      "role": "frontend",
+      "state": "running",
+      "osType": "Windows 11 (64-bit)",
+      "memoryMiB": "4096",
+      "cpus": "4",
+      "networkMode": "natnetwork",
+      "networkName": "RedeProjeto",
+      "ipv4": "10.77.55.5"
+    },
+    {
+      "name": "UBUNTU-BACKEND",
+      "role": "backend",
+      "state": "running",
+      "osType": "Ubuntu 24.04 LTS (Noble Numbat) (64-bit)",
+      "memoryMiB": "2048",
+      "cpus": "2",
+      "networkMode": "natnetwork",
+      "networkName": "RedeProjeto",
+      "ipv4": "No value set!"
+    },
+    {
+      "name": "UBUNTU-DATABASE",
+      "role": "database",
+      "state": "running",
+      "osType": "Ubuntu 24.04 LTS (Noble Numbat) (64-bit)",
+      "memoryMiB": "2048",
+      "cpus": "2",
+      "networkMode": "natnetwork",
+      "networkName": "RedeProjeto",
+      "ipv4": "No value set!"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "/etc/mysql/mysql.conf.d/zz-inventario-private.cnf": {
+      "bind-address": "127.0.0.1,10.77.55.4",
+      "mysqlx-bind-address": "127.0.0.1",
+      "require_secure_transport": "ON",
+      "default_time_zone": "'+00:00'",
+      "skip_name_resolve": "ON"
+    },
+    "/etc/mysql/mysql.conf.d/mysqld.cnf": {
+      "bind-address": "127.0.0.1",
+      "mysqlx-bind-address": "127.0.0.1"
+    }
+  },
+  "listeningPorts": "LISTEN 0      70         127.0.0.1:33060 0.0.0.0:*\nLISTEN 0      4096   127.0.0.53%lo:53    0.0.0.0:*\nLISTEN 0      4096      127.0.0.54:53    0.0.0.0:*\nLISTEN 0      151       10.77.55.4:3306  0.0.0.0:*\nLISTEN 0      151        127.0.0.1:3306  0.0.0.0:*\nLISTEN 0      4096         0.0.0.0:22    0.0.0.0:*\nLISTEN 0      4096            [::]:22       [::]:*\n"
+}

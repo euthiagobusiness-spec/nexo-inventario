@@ -1,6 +1,6 @@
 # Promoción TypeScript/MySQL y prueba de reinicios
 
-> **Estado de entrega GitHub (13/11/2026):** consulte [ENTREGA_GITHUB.md](ENTREGA_GITHUB.md). La evidencia posterior confirma recuperación de Database y persistencia; SSH no estuvo accesible durante la preparación del repositorio.
+> **Estado de entrega GitHub (13/11/2026):** consulte [ENTREGA_GITHUB.md](ENTREGA_GITHUB.md). La revisión posterior con las tres VMs encendidas confirmó servicios, fuentes, MySQL y panel Windows. Consulte [VALIDACION_TRES_VMS.md](VALIDACION_TRES_VMS.md). El bloqueo de arranque que sigue es histórico y quedó resuelto.
 
 > **Registro de la etapa de promoción:** los pendientes y direcciones candidatas que siguen corresponden a sus fechas de verificación. La recuperación posterior está en `artifacts/typescript/persistence-after-database-vm-reboot-recovery.json`.
 

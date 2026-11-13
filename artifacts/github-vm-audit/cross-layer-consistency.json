@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-11-13T19:31:01.465418+00:00",
+  "status": "PASS",
+  "staticHttpFilesMatchLocalBuild": true,
+  "databaseMetrics": {
+    "products": 17,
+    "units": 80,
+    "sales": 17,
+    "revenue": "404.20"
+  },
+  "frontendDashboardObserved": {
+    "products": 17,
+    "units": 80,
+    "sales": 17,
+    "revenue": "404.20",
+    "databaseConnected": true
+  },
+  "frontendVisualScope": "Dashboard opening and read-only data; no new product/sale UI operation executed",
+  "readOnlyHttpChecks": 12,
+  "newQaRowsCreated": 0,
+  "vmOrServiceRestarts": 0,
+  "record13AndSale9Preserved": true,
+  "analyticsMetricsMatchSqlAndDashboard": true
+}

@@ -1,0 +1,408 @@
+{
+  "timestampUtc": "2026-11-13T19:28:24.178312+00:00",
+  "hostname": "ubuntu-backend",
+  "projectDirectories": [
+    "inventario-mvp",
+    "inventario-typescript"
+  ],
+  "os": {
+    "PRETTY_NAME": "Ubuntu 24.04.5 LTS",
+    "NAME": "Ubuntu",
+    "VERSION_ID": "24.04",
+    "VERSION": "24.04.5 LTS (Noble Numbat)"
+  },
+  "services": {
+    "inventario-typescript": {
+      "WorkingDirectory": "/home/inventario/inventario-typescript",
+      "User": "inventario",
+      "ActiveState": "active",
+      "SubState": "running",
+      "FragmentPath": "/etc/systemd/system/inventario-typescript.service",
+      "UnitFileState": "enabled"
+    },
+    "inventario-mvp": {
+      "WorkingDirectory": "/home/inventario/inventario-mvp/publish",
+      "User": "inventario",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "FragmentPath": "/etc/systemd/system/inventario-mvp.service",
+      "UnitFileState": "disabled"
+    },
+    "mysql": {
+      "WorkingDirectory": "",
+      "User": "",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "FragmentPath": "",
+      "UnitFileState": ""
+    },
+    "postgresql": {
+      "WorkingDirectory": "",
+      "User": "",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "FragmentPath": "",
+      "UnitFileState": ""
+    }
+  },
+  "ipv4": [
+    "127.0.0.1",
+    "10.77.55.3"
+  ],
+  "sourceManifests": {
+    "/home/inventario/inventario-typescript": {
+      "backend/src/InventoryStore.ts": {
+        "bytes": 14185,
+        "sha256": "b65a2df77e1ed551aabcc1fe727e9044b335e1cedf99fb4c97844b8bacfe15a9",
+        "normalizedSha256": "b65a2df77e1ed551aabcc1fe727e9044b335e1cedf99fb4c97844b8bacfe15a9"
+      },
+      "backend/src/VentaService.ts": {
+        "bytes": 1612,
+        "sha256": "2cd148618b450fcd8b904f4b082ad5b9d1322db0a6683deb5b8cb7dfcaafe29c",
+        "normalizedSha256": "2cd148618b450fcd8b904f4b082ad5b9d1322db0a6683deb5b8cb7dfcaafe29c"
+      },
+      "backend/src/domain.ts": {
+        "bytes": 4765,
+        "sha256": "287896e98dcc6617314871f2376af9ed8d94d7c4b508704b5da7c8860538e704",
+        "normalizedSha256": "287896e98dcc6617314871f2376af9ed8d94d7c4b508704b5da7c8860538e704"
+      },
+      "backend/src/server.ts": {
+        "bytes": 6272,
+        "sha256": "2c892a3d117b4f6840cd107141b9b42d71c138d626ad3160ddddff411a533e4f",
+        "normalizedSha256": "2c892a3d117b4f6840cd107141b9b42d71c138d626ad3160ddddff411a533e4f"
+      },
+      "backend/tests/domain.test.ts": {
+        "bytes": 6047,
+        "sha256": "cdf7238b423f1ea35c810a553e282df7c2f58aa5d57d064d83bf293d0be829a3",
+        "normalizedSha256": "cdf7238b423f1ea35c810a553e282df7c2f58aa5d57d064d83bf293d0be829a3"
+      },
+      "backend/tests/http.test.ts": {
+        "bytes": 3146,
+        "sha256": "71131fdc40f2a48ca4b64e4b61edde51bd530f567a9452421f42f70654bab4a1",
+        "normalizedSha256": "71131fdc40f2a48ca4b64e4b61edde51bd530f567a9452421f42f70654bab4a1"
+      },
+      "backend/tsconfig.json": {
+        "bytes": 350,
+        "sha256": "2b8026a6693d7b6e0960c506aba0cd9a82eb761488d2ad6e16e7f6a6fe03a194",
+        "normalizedSha256": "2b8026a6693d7b6e0960c506aba0cd9a82eb761488d2ad6e16e7f6a6fe03a194"
+      },
+      "db/001_schema.sql": {
+        "bytes": 2568,
+        "sha256": "56ef18c122dd05098cce119945b9ac790e74faadb7ca7702c29e9639bf6bc018",
+        "normalizedSha256": "56ef18c122dd05098cce119945b9ac790e74faadb7ca7702c29e9639bf6bc018"
+      },
+      "db/README.md": {
+        "bytes": 1240,
+        "sha256": "0520c3dd5c5a8b18ffa671398553eb84937317d1a306bcc63e8a5560503a9a45",
+        "normalizedSha256": "0520c3dd5c5a8b18ffa671398553eb84937317d1a306bcc63e8a5560503a9a45"
+      },
+      "db/mysql/001_schema.sql": {
+        "bytes": 2677,
+        "sha256": "c3cc232faadf81421894ab06f5da3c7b5ca2b134595b74bd627fdabd9c0087ad",
+        "normalizedSha256": "c3cc232faadf81421894ab06f5da3c7b5ca2b134595b74bd627fdabd9c0087ad"
+      },
+      "deploy/typescript/inventario-typescript-candidate.service": {
+        "bytes": 643,
+        "sha256": "0380e52a5fd243745daf985b8e8e398ea48386900633c94d6a8b758eca7202f3",
+        "normalizedSha256": "0380e52a5fd243745daf985b8e8e398ea48386900633c94d6a8b758eca7202f3"
+      },
+      "deploy/typescript/inventario-typescript.service": {
+        "bytes": 652,
+        "sha256": "5371c1f7007b1a5ac2b4c3cefb4c453b81826ccba2e986feffcf0bd4e27ffcd7",
+        "normalizedSha256": "5371c1f7007b1a5ac2b4c3cefb4c453b81826ccba2e986feffcf0bd4e27ffcd7"
+      },
+      "deploy/typescript/prepare-node.py": {
+        "bytes": 1739,
+        "sha256": "077ca98c06bafbfcc5854013657bb81f1500855a174c077bf1b2d8e47b42cf97",
+        "normalizedSha256": "077ca98c06bafbfcc5854013657bb81f1500855a174c077bf1b2d8e47b42cf97"
+      },
+      "deploy/typescript/promote-backend.py": {
+        "bytes": 4527,
+        "sha256": "cc2220c2e464b7653f0b136afd1b67de6f53587cefc3df75c7730a3edae8866a",
+        "normalizedSha256": "cc2220c2e464b7653f0b136afd1b67de6f53587cefc3df75c7730a3edae8866a"
+      },
+      "frontend/public/index.html": {
+        "bytes": 12906,
+        "sha256": "6380139dbd1d5abc915597f82c4e907feace722f47e4c9417e0f5ba5367db856",
+        "normalizedSha256": "92b73ddb9dfa1b169fedcd5a30c7699edf677b87f8bef7f9959ca04d10d56623"
+      },
+      "frontend/public/styles.css": {
+        "bytes": 10393,
+        "sha256": "a0dd591bb98dd08b16851e829b5e8b0935c180a91827da7584c77853334e87e6",
+        "normalizedSha256": "a0dd591bb98dd08b16851e829b5e8b0935c180a91827da7584c77853334e87e6"
+      },
+      "frontend/src/app.ts": {
+        "bytes": 19825,
+        "sha256": "88e381ab62a747ac13fe76dff88e3aef70afc3ef9b54e61959996ca73fbf6583",
+        "normalizedSha256": "0c6fb0470f60103c929fb49cf884c60ffaa23b0029fea8964a926b1a69a8931a"
+      },
+      "frontend/tsconfig.json": {
+        "bytes": 334,
+        "sha256": "ef35ddb7b9307a9b7c28d6b4881689a2bc1746600c86becaa50902e4aeb8e247",
+        "normalizedSha256": "ef35ddb7b9307a9b7c28d6b4881689a2bc1746600c86becaa50902e4aeb8e247"
+      },
+      "package-lock.json": {
+        "bytes": 17546,
+        "sha256": "0fe31b4b2dc26de04eaed27f40d9ae9087b682a4d6386519b248b10ff3341259",
+        "normalizedSha256": "0fe31b4b2dc26de04eaed27f40d9ae9087b682a4d6386519b248b10ff3341259"
+      },
+      "package.json": {
+        "bytes": 652,
+        "sha256": "80b47f10ad7e5b2789ecddf2491918d6ab7e2fa9dc784c4246542de201d0cd2d",
+        "normalizedSha256": "80b47f10ad7e5b2789ecddf2491918d6ab7e2fa9dc784c4246542de201d0cd2d"
+      },
+      "shared/contracts.ts": {
+        "bytes": 1578,
+        "sha256": "9054b249b0dff28c767e349056e7948cfe6ce346d76a4e2d4e967b2f610a14b8",
+        "normalizedSha256": "9054b249b0dff28c767e349056e7948cfe6ce346d76a4e2d4e967b2f610a14b8"
+      },
+      "tests/http_e2e.py": {
+        "bytes": 8646,
+        "sha256": "e0ccf8427cee22c791a5d2c437ae4711a425f2a51b135ba0cf448ba6bc376b3f",
+        "normalizedSha256": "e0ccf8427cee22c791a5d2c437ae4711a425f2a51b135ba0cf448ba6bc376b3f"
+      }
+    },
+    "/home/inventario/inventario-mvp": {
+      "README.md": {
+        "bytes": 3482,
+        "sha256": "ed4465f5092cc69feade6bf7e85194915e96120524d5486c20c8fb3ed311e53d",
+        "normalizedSha256": "ed4465f5092cc69feade6bf7e85194915e96120524d5486c20c8fb3ed311e53d"
+      },
+      "db/001_schema.sql": {
+        "bytes": 2568,
+        "sha256": "56ef18c122dd05098cce119945b9ac790e74faadb7ca7702c29e9639bf6bc018",
+        "normalizedSha256": "56ef18c122dd05098cce119945b9ac790e74faadb7ca7702c29e9639bf6bc018"
+      },
+      "db/mysql/001_schema.sql": {
+        "bytes": 2677,
+        "sha256": "c3cc232faadf81421894ab06f5da3c7b5ca2b134595b74bd627fdabd9c0087ad",
+        "normalizedSha256": "c3cc232faadf81421894ab06f5da3c7b5ca2b134595b74bd627fdabd9c0087ad"
+      },
+      "deploy/configure-lab-database.py": {
+        "bytes": 4567,
+        "sha256": "ae7c7b4d48f3bacc428b33adcf6fb370b9ce09ad017606a6942fcccc81a8dfe8",
+        "normalizedSha256": "ae7c7b4d48f3bacc428b33adcf6fb370b9ce09ad017606a6942fcccc81a8dfe8"
+      },
+      "deploy/install-backend-service.sh": {
+        "bytes": 1000,
+        "sha256": "495216265b31aeceac757587a7c19e2f3fc9a46872730ccb9bcd1a47a2317b0a",
+        "normalizedSha256": "495216265b31aeceac757587a7c19e2f3fc9a46872730ccb9bcd1a47a2317b0a"
+      },
+      "deploy/inventario-mvp.service": {
+        "bytes": 587,
+        "sha256": "79f0828b8ca66cbd68c14e73537da17f51d25cac7c6fc72f7eda19f45ca6e953",
+        "normalizedSha256": "79f0828b8ca66cbd68c14e73537da17f51d25cac7c6fc72f7eda19f45ca6e953"
+      },
+      "deploy/inventario-mvp.user.service": {
+        "bytes": 479,
+        "sha256": "3442861925565dceb83640118c5db8a60a4783454f2695a5812f2edd87f4bbbb",
+        "normalizedSha256": "3442861925565dceb83640118c5db8a60a4783454f2695a5812f2edd87f4bbbb"
+      },
+      "deploy/mysql/adapt-source.py": {
+        "bytes": 1404,
+        "sha256": "05f436c6edd008ce978a8485a21a158ccccac5565c1240307345d063ad3bca26",
+        "normalizedSha256": "05f436c6edd008ce978a8485a21a158ccccac5565c1240307345d063ad3bca26"
+      },
+      "deploy/mysql/inventario-mvp-mysql.service": {
+        "bytes": 570,
+        "sha256": "9c1296148872a11159abcd12fd2d3395e222bbcf47dc62bdf482346f28951e07",
+        "normalizedSha256": "9c1296148872a11159abcd12fd2d3395e222bbcf47dc62bdf482346f28951e07"
+      },
+      "deploy/prepare-database.sh": {
+        "bytes": 1552,
+        "sha256": "ce6c45867bfad14ae335c43b9cab04f2c7e5990e91cac1feca426c1db31bfd59",
+        "normalizedSha256": "ce6c45867bfad14ae335c43b9cab04f2c7e5990e91cac1feca426c1db31bfd59"
+      },
+      "deploy/set-connection.py": {
+        "bytes": 1353,
+        "sha256": "e97af8a0dd0bb80d349b823ea1851d78387903152068cbeda693cc17b386f7ae",
+        "normalizedSha256": "e97af8a0dd0bb80d349b823ea1851d78387903152068cbeda693cc17b386f7ae"
+      },
+      "deploy/transfer-connection.py": {
+        "bytes": 1030,
+        "sha256": "27bea9439e5e581d6b2573c09facc1e8073dde11bef0fb009fc292ee179d772e",
+        "normalizedSha256": "27bea9439e5e581d6b2573c09facc1e8073dde11bef0fb009fc292ee179d772e"
+      },
+      "docs/ALGORITMO.md": {
+        "bytes": 5602,
+        "sha256": "510dd7c6bf8580a0bbefe44e56a5ca5bce5149eb62cc852fda89fa6f7184c1d8",
+        "normalizedSha256": "510dd7c6bf8580a0bbefe44e56a5ca5bce5149eb62cc852fda89fa6f7184c1d8"
+      },
+      "docs/ARQUITECTURA.md": {
+        "bytes": 6866,
+        "sha256": "ececb054f13bde485fe24b94f4b0a72f1f221a2f7f50931c25dd461c357f233f",
+        "normalizedSha256": "ececb054f13bde485fe24b94f4b0a72f1f221a2f7f50931c25dd461c357f233f"
+      },
+      "docs/ENTREGA_FINAL.md": {
+        "bytes": 9038,
+        "sha256": "f3b771ab8cabab94705ad93dac7bc87f1de0d5e77b92eb397112b494b179a970",
+        "normalizedSha256": "f3b771ab8cabab94705ad93dac7bc87f1de0d5e77b92eb397112b494b179a970"
+      },
+      "docs/ENTREGA_VALIDADA.md": {
+        "bytes": 9787,
+        "sha256": "dc1932b50a6c3cf08e1a43520799e0296c39800494177631b9d6126e821148b0",
+        "normalizedSha256": "dc1932b50a6c3cf08e1a43520799e0296c39800494177631b9d6126e821148b0"
+      },
+      "docs/ESTADO_REAL.md": {
+        "bytes": 10066,
+        "sha256": "26e8a66ea6533814b9ce5a4c654c15b1bc7a3b2f0a0b1347211415f5ebb953b3",
+        "normalizedSha256": "26e8a66ea6533814b9ce5a4c654c15b1bc7a3b2f0a0b1347211415f5ebb953b3"
+      },
+      "docs/GUION_PRESENTACION.md": {
+        "bytes": 5120,
+        "sha256": "aeb4f6c15f135f7d913cf4cd523b28e15a2eb90070968db11f8d3f7fe88736de",
+        "normalizedSha256": "aeb4f6c15f135f7d913cf4cd523b28e15a2eb90070968db11f8d3f7fe88736de"
+      },
+      "docs/OPERACION.md": {
+        "bytes": 9112,
+        "sha256": "d53428eb36c26cb1cd51ca59f3af42a929bbd5ab97f27d7a508a4d7d32bed775",
+        "normalizedSha256": "d53428eb36c26cb1cd51ca59f3af42a929bbd5ab97f27d7a508a4d7d32bed775"
+      },
+      "docs/SCRUM.md": {
+        "bytes": 4860,
+        "sha256": "06e8f09d5fa9242607f629b39165b3e1ffe7ccb25e85d0bcaec1bf6782be26e9",
+        "normalizedSha256": "06e8f09d5fa9242607f629b39165b3e1ffe7ccb25e85d0bcaec1bf6782be26e9"
+      },
+      "docs/VALIDACION_FRONTEND_SEGUIMIENTO.md": {
+        "bytes": 2425,
+        "sha256": "0de8dd202008ab18a61788d8f5007b44325c45cc97d6467402012ff2e2ba334f",
+        "normalizedSha256": "0de8dd202008ab18a61788d8f5007b44325c45cc97d6467402012ff2e2ba334f"
+      },
+      "docs/VentaService.original.cs.txt": {
+        "bytes": 2395,
+        "sha256": "fe2591db736900c939000ba495f5644e40e6e97ad766a7dbf9f50361ea3ac474",
+        "normalizedSha256": "a4bc4f8de8a1fdbb719d37ba621d0a65bbfc8babc84c5331c7050de82f1f610d"
+      },
+      "src/Inventario.Api/AcademicModels.cs": {
+        "bytes": 626,
+        "sha256": "aff8b07382bcf2a4a20dbd3140682ce99561313a8262234dca63eebbd8077268",
+        "normalizedSha256": "aff8b07382bcf2a4a20dbd3140682ce99561313a8262234dca63eebbd8077268"
+      },
+      "src/Inventario.Api/Domain.cs": {
+        "bytes": 2938,
+        "sha256": "04979c903b9c988e954c09747901d0730fbeab2e2da7cffd0d9939e14e42f77d",
+        "normalizedSha256": "04979c903b9c988e954c09747901d0730fbeab2e2da7cffd0d9939e14e42f77d"
+      },
+      "src/Inventario.Api/Inventario.Api.csproj": {
+        "bytes": 427,
+        "sha256": "e2a9f1981e3cedede294ac5f52b10ae65b28f4a913cd7c3a083f864f8aa4c76a",
+        "normalizedSha256": "e2a9f1981e3cedede294ac5f52b10ae65b28f4a913cd7c3a083f864f8aa4c76a"
+      },
+      "src/Inventario.Api/InventoryStore.cs": {
+        "bytes": 18707,
+        "sha256": "1df030c8a3f3e4278c8a1ac6d81579cee4b0648731502e9fd96334f0de18e31b",
+        "normalizedSha256": "572e12e483845b140ee8a872a0ea2246301324f503ea168805b67fde2bd17e4d"
+      },
+      "src/Inventario.Api/Program.cs": {
+        "bytes": 4778,
+        "sha256": "ab90aa9c86f43d6875d3791be19b4b66c496835e5d8c5dc657203fee6e03d851",
+        "normalizedSha256": "ab90aa9c86f43d6875d3791be19b4b66c496835e5d8c5dc657203fee6e03d851"
+      },
+      "src/Inventario.Api/VentaService.cs": {
+        "bytes": 2304,
+        "sha256": "01324fda841139c86b6eb58d101aa23bf4f21cb761ba2426612deec3ccfffede",
+        "normalizedSha256": "01324fda841139c86b6eb58d101aa23bf4f21cb761ba2426612deec3ccfffede"
+      },
+      "src/Inventario.Api/appsettings.json": {
+        "bytes": 155,
+        "sha256": "bff887dfb0a85690a82250ff7f68de50d00f3afd46db97a99b9d539b1721de41",
+        "normalizedSha256": "bff887dfb0a85690a82250ff7f68de50d00f3afd46db97a99b9d539b1721de41"
+      },
+      "src/Inventario.Api/packages.lock.json": {
+        "bytes": 1433,
+        "sha256": "d6fe7206fc0c1925b728025aa290b41014e5ece307e893ba1b89f09e27081408",
+        "normalizedSha256": "d6fe7206fc0c1925b728025aa290b41014e5ece307e893ba1b89f09e27081408"
+      },
+      "src/Inventario.Api/wwwroot/app.js": {
+        "bytes": 15694,
+        "sha256": "f021035294339b0570d259577fa1b77b4378944f8031945b8b55360af88d56ed",
+        "normalizedSha256": "ba2b1a7b8583ce6e1b016cf2f2e65259491b681a760d35c453028bc2e42f3faf"
+      },
+      "src/Inventario.Api/wwwroot/index.html": {
+        "bytes": 12811,
+        "sha256": "ffae63b40bbb953a827a30d7b7af8eecdc4eddd4b575dff5777b81e2941fbb31",
+        "normalizedSha256": "45b5e8813d4c472e3b095d1c2336a35b15207ec4170b977c17044b9b647b1ba5"
+      },
+      "src/Inventario.Api/wwwroot/styles.css": {
+        "bytes": 10393,
+        "sha256": "a0dd591bb98dd08b16851e829b5e8b0935c180a91827da7584c77853334e87e6",
+        "normalizedSha256": "a0dd591bb98dd08b16851e829b5e8b0935c180a91827da7584c77853334e87e6"
+      },
+      "tests/Inventario.Tests/Inventario.Tests.csproj": {
+        "bytes": 556,
+        "sha256": "6aaef428365b49fd82b549b92a7d6550111f945889b53571e52f39ce02dd4f90",
+        "normalizedSha256": "6aaef428365b49fd82b549b92a7d6550111f945889b53571e52f39ce02dd4f90"
+      },
+      "tests/Inventario.Tests/Program.cs": {
+        "bytes": 4202,
+        "sha256": "14f1b9a059168aeca5260da70e558cbe00f7ee5187254e2c6939ae454f5b9b5b",
+        "normalizedSha256": "14f1b9a059168aeca5260da70e558cbe00f7ee5187254e2c6939ae454f5b9b5b"
+      },
+      "tests/check_original.py": {
+        "bytes": 943,
+        "sha256": "9c5c93b1d91851290f27b5cb25673e5de1d05cc5602d3763fd289805c1db1702",
+        "normalizedSha256": "9c5c93b1d91851290f27b5cb25673e5de1d05cc5602d3763fd289805c1db1702"
+      },
+      "tests/check_persistence.py": {
+        "bytes": 2096,
+        "sha256": "359f066f8351c6734cca627a286b43405a7a80649e0fc1c9d407d750d719aaeb",
+        "normalizedSha256": "359f066f8351c6734cca627a286b43405a7a80649e0fc1c9d407d750d719aaeb"
+      },
+      "tests/http_e2e.py": {
+        "bytes": 8637,
+        "sha256": "09a2ca953b4b6425357c3235f4e9ba915449b6d4d4d0885ab47ec90cf4d825c3",
+        "normalizedSha256": "09a2ca953b4b6425357c3235f4e9ba915449b6d4d4d0885ab47ec90cf4d825c3"
+      },
+      "tests/network_probe.py": {
+        "bytes": 943,
+        "sha256": "c0ad38763995b545e8077858788a88c12279220d64b4aceea663b4fa29626093",
+        "normalizedSha256": "c0ad38763995b545e8077858788a88c12279220d64b4aceea663b4fa29626093"
+      },
+      "tests/package_delivery.py": {
+        "bytes": 2194,
+        "sha256": "14d3cce66956d45fa94c716cc384db8ed57d894aecebda88dce993c0ae6918d4",
+        "normalizedSha256": "14d3cce66956d45fa94c716cc384db8ed57d894aecebda88dce993c0ae6918d4"
+      },
+      "tests/verify_frontend_records.py": {
+        "bytes": 2686,
+        "sha256": "4bfa4ad624f92cd7195b2a6e9cbc706af1f72e28af88f9aea77325d2cbe37a69",
+        "normalizedSha256": "4bfa4ad624f92cd7195b2a6e9cbc706af1f72e28af88f9aea77325d2cbe37a69"
+      },
+      "tests/verify_lab.py": {
+        "bytes": 1615,
+        "sha256": "7ec12044178aad2ee523eaa455d510473000f4fdd1ad00aac8575fa3994ed04e",
+        "normalizedSha256": "7ec12044178aad2ee523eaa455d510473000f4fdd1ad00aac8575fa3994ed04e"
+      }
+    }
+  },
+  "health": {
+    "status": "ready",
+    "database": "MySQL",
+    "schema": 1,
+    "language": "TypeScript"
+  },
+  "demoProduct": {
+    "id": 13,
+    "sku": "VM13",
+    "name": "demo",
+    "category": "demo",
+    "price": 49.9,
+    "stock": 8,
+    "minimumStock": 5
+  },
+  "demoSale": {
+    "id": 9,
+    "requestId": "437bb231-48a9-40cd-9e98-e895be179533",
+    "total": 99.8,
+    "createdAt": "2026-11-13T11:42:32.151376Z",
+    "items": [
+      {
+        "productId": 13,
+        "sku": "VM13",
+        "name": "demo",
+        "quantity": 2,
+        "unitPrice": 49.9
+      }
+    ]
+  }
+}

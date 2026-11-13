@@ -100,6 +100,16 @@ curl --fail http://10.77.55.3:8080/api/health/ready
 
 No ejecutar el script de promoción en una instalación nueva: está diseñado para el corte desde las candidatas anteriores. No es necesario retirar PostgreSQL para ejecutar TypeScript/MySQL.
 
+## Datos académicos opcionales
+
+La exportación `db/mysql/demo-data.sql` se obtuvo de una instantánea consistente del laboratorio y contiene 114 filas QA/demo de siete tablas. No incluye cuentas MySQL ni secretos. En Database **nueva**, después de aplicar `001_schema.sql`, puede importarse con:
+
+```sh
+sudo mysql --default-character-set=utf8mb4 < db/mysql/demo-data.sql
+```
+
+No usar `--force`, no aplicar a las VMs existentes ni a una base con datos de aplicación. El archivo usa una transacción y no borra tablas/filas. La fila de versión utiliza INSERT IGNORE para admitir el inicializador de la instalación nueva; el resto de inserciones falla ante conflictos en vez de reemplazar datos. Se validaron sintaxis mediante EXPLAIN e integridad de los datos exportados; no se ejecutó una restauración completa en un segundo banco.
+
 ## 4. Aceptación funcional
 
 Desde Backend, contra una instalación disponible:

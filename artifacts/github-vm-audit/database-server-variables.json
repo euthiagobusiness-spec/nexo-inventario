@@ -1,0 +1,22 @@
+[
+  {
+    "Variable_name": "bind_address",
+    "Value": "127.0.0.1,10.77.55.4"
+  },
+  {
+    "Variable_name": "mysqlx_bind_address",
+    "Value": "127.0.0.1"
+  },
+  {
+    "Variable_name": "require_secure_transport",
+    "Value": "ON"
+  },
+  {
+    "Variable_name": "skip_name_resolve",
+    "Value": "ON"
+  },
+  {
+    "Variable_name": "time_zone",
+    "Value": "+00:00"
+  }
+]

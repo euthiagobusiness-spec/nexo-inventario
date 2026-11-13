@@ -1,0 +1,10 @@
+{
+  "timestampUtc": "20261113T141727Z",
+  "backupDirectory": "/var/backups/inventario-postgresql-20261113T141727Z",
+  "packagesRemoved": false,
+  "dataDeleted": false,
+  "status": "PASS",
+  "postgresqlCluster": "inactive",
+  "postgresqlAutostart": "manual/disabled",
+  "mysql": "active"
+}

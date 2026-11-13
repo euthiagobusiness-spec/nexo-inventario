@@ -1,12 +1,8 @@
 # Nexo: arquitectura, desarrollo y funcionamiento
 
-> **Estado de entrega GitHub (13/11/2026):** consulte [ENTREGA_GITHUB.md](ENTREGA_GITHUB.md). La evidencia posterior confirma recuperación de Database y persistencia; SSH no estuvo accesible durante la preparación del repositorio.
+> **Estado vigente verificado en las tres VMs:** TypeScript/MySQL en `http://10.77.55.3:8080`, Backend y MySQL activos/habilitados, panel Windows conectado y PostgreSQL inactivo/deshabilitado con datos preservados. Evidencias y exportación QA: [VALIDACION_TRES_VMS.md](VALIDACION_TRES_VMS.md).
 
-> **Registro de la etapa de promoción:** los pendientes y direcciones candidatas que siguen corresponden a sus fechas de verificación. La recuperación posterior está en `artifacts/typescript/persistence-after-database-vm-reboot-recovery.json`.
-
-> **Actualización de implantación:** la promoción TypeScript/MySQL a `:8080` pasó 33 pruebas y el reinicio de la VM Backend conservó los registros. El siguiente reinicio de Database se detuvo en el arranque de Linux, sin red/SSH. La API informa 503 mientras se recupera esa VM. PostgreSQL y sus datos siguen preservados. Consulte [el informe de continuación](PROMOCION_TYPESCRIPT_MYSQL.md). Las secciones que describen la candidata `:8082` documentan el estado previo a esta promoción.
-
-**Documentación actual en español.** Fecha: 13 de noviembre de 2026. Esta guía describe las carpetas que se ven en VS Code y el estado real del código y de las máquinas. Separa la API TypeScript desplegada para pruebas de la API C# anterior que aún ocupa el puerto principal.
+**Documentación en español.** Fecha: 13 de noviembre de 2026. La explicación técnica corresponde a la aplicación TypeScript/MySQL. Las pruebas de las candidatas `:8082` y C# anteriores se identifican como historia. El bloqueo de arranque y su recuperación están preservados en [el informe de promoción](PROMOCION_TYPESCRIPT_MYSQL.md).
 
 ## 1. Qué es el sistema y cómo se conectan las máquinas
 
@@ -14,7 +10,7 @@ Nexo es una aplicación web de inventario. Tiene una interfaz en el navegador, u
 
 ```text
 VM Windows 11 — Frontend
-Edge: http://10.77.55.3:8082  (candidata TypeScript, verificada)
+Edge: http://10.77.55.3:8080  (TypeScript/MySQL, servicio principal)
                        │ HTTP + JSON por RedeProjeto
                        ▼
 VM Ubuntu Backend — 10.77.55.3
@@ -27,7 +23,7 @@ MySQL 8, motor InnoDB y base inventario_db
 
 El Frontend pide datos a la API con llamadas HTTP, como `GET /api/products` o `POST /api/sales`. La API comprueba las entradas, ejecuta reglas de inventario, envía SQL a MySQL y devuelve JSON. Solo la VM Backend se conecta a MySQL. El navegador nunca necesita la contraseña ni una conexión directa al puerto 3306.
 
-El código usa peticiones relativas `/api/...` y el servidor sirve los archivos de la interfaz desde el mismo origen. Esto evita que el navegador llame a un host distinto durante las operaciones normales. MySQL está configurado en la VM Database para escuchar por loopback y por `10.77.55.4:3306`; PostgreSQL continúa instalado y activo en `10.77.55.4:5432`. Los archivos de conexión y la CA TLS están en directorios privados de las VMs, fuera de Git y de los paquetes de código.
+El código usa peticiones relativas `/api/...` y el servidor sirve los archivos de la interfaz desde el mismo origen. Esto evita que el navegador llame a un host distinto durante las operaciones normales. MySQL está configurado en la VM Database para escuchar por loopback y por `10.77.55.4:3306`; PostgreSQL continúa instalado con sus datos preservados, pero está inactivo y deshabilitado; no escucha en 5432. Los archivos de conexión y la CA TLS están en directorios privados de las VMs, fuera de Git y de los paquetes de código.
 
 Las conexiones SSH del laboratorio se reenvían al equipo local por `127.0.0.1:2222` (Backend) y `127.0.0.1:2223` (Database). Estos puertos son para administrar y consultar las VMs; el navegador usa la IP privada de Backend, no el túnel SSH.
 
@@ -233,15 +229,17 @@ Contra ese Backend y MySQL reales se ejecutaron los 33 escenarios HTTP. Después
 
 Antes de reiniciar el proceso se guardó la venta y producto reales. Después se terminó Node, se inició de nuevo y se compararon los mismos datos por HTTP. Resultado exacto: `status PASS`, `productId=19`, `saleId=13`, `stock=0`, `saleTotal=1`, `exactRecordMatch=true`. El punto original posterior a la migración también coincidió: producto 13/stock 8 y venta 9/total 99,80.
 
-Todavía no se ha probado la interfaz TypeScript visualmente en Edge dentro de Windows 11. La ruta `/`, CSS y JavaScript compilado sí devolvieron HTTP 200 en las pruebas de los dos servidores. Tampoco se ha probado el arranque automático de Node después de reiniciar la VM Backend.
+En la revisión posterior con las tres VMs encendidas, Edge dentro de Windows abrió el panel TypeScript en `:8080` con base conectada y cifras coincidentes con API/SQL. Se aprobaron 12 consultas de solo lectura y se compararon las fuentes activas y 12 compilados. La evidencia previa también confirma inicio automático y persistencia después de reiniciar Backend, además de la recuperación de Database. El recorrido visual completo de altas y ventas de esta versión sigue reservado a la demostración del autor.
 
-## 10. Estado de publicación y pasos faltantes
+## 10. Estado actual de la instalación
 
-El PostgreSQL de la entrega anterior sigue activo. `http://10.77.55.3:8080` sigue reservado a la API anterior; la API actual TypeScript con MySQL, demostrada y probada, está separada en `http://10.77.55.3:8082`. La candidata anterior MySQL/.NET en 8081 está inactiva.
+El servicio principal es `/etc/systemd/system/inventario-typescript.service`, activo y habilitado bajo `inventario`, desde `/home/inventario/inventario-typescript`, en `10.77.55.3:8080`. La unidad instalada coincide con el archivo del repositorio. Las candidatas 8081 y 8082 describen etapas previas; no son la dirección actual de entrega.
 
-El runtime y el proceso TypeScript se ejecutan bajo `inventario`, sin reemplazar todavía el puerto principal. El archivo `deploy/typescript/inventario-typescript-candidate.service` prepara una unidad para producción; su instalación en `/etc/systemd` requiere privilegios administrativos. El último `sudo -n whoami` solicitó contraseña en las VMs, por lo que no instalé ni activé esa unidad ni cambié el puerto principal. Tampoco desactivé PostgreSQL. Los datos de ambos motores se conservan.
+MySQL está activo y habilitado en Database. La conexión observada usa TLS 1.3, requiere transporte seguro y escucha en loopback y `10.77.55.4:3306`. El cliente verifica la CA y utiliza `verifyIdentity: false`: no comprueba la coincidencia del hostname del certificado. Las credenciales y certificados permanecen en directorios privados.
 
-Para publicar el sistema integrado como servicio automático en `:8080`, queda otorgar/usar administración de Ubuntu Backend, instalar y habilitar la unidad revisada, mover el listener tras pruebas, validar Edge y reinicios y solo entonces detener/deshabilitar PostgreSQL. El sistema funcional de pruebas es la candidata TypeScript/MySQL en `:8082`; no se presenta `:8080` como TypeScript.
+PostgreSQL quedó inactivo y deshabilitado, conservando paquetes, datos y respaldo. El reporte anterior de retirada se recuperó de Database y está en `artifacts/github-vm-audit/postgresql-retirement.json`; esta revisión solo consultó su estado. No se ejecutó nuevamente ningún configurador, migrador o script de retirada.
+
+Las 21 fuentes/configuraciones coincidentes de la instalación activa y los 12 compilados comparados están documentados con hashes. Las copias históricas distintas se preservan como texto sin sustituir el código actual. El banco contiene 17 productos y 17 ventas QA/demo; se exportaron 114 filas de siete tablas para una reconstrucción opcional en Database nueva. Consulte [la validación directa](VALIDACION_TRES_VMS.md).
 
 ## 11. Ejecutar pruebas e iniciar localmente
 

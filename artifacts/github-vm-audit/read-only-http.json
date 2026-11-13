@@ -1,0 +1,835 @@
+{
+  "timestampUtc": "2026-11-13T19:31:01.465418+00:00",
+  "baseUrl": "http://10.77.55.3:8080",
+  "readOnly": true,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 12906,
+      "sha256": "6380139dbd1d5abc915597f82c4e907feace722f47e4c9417e0f5ba5367db856"
+    },
+    {
+      "path": "/styles.css",
+      "status": 200,
+      "bytes": 10393,
+      "sha256": "a0dd591bb98dd08b16851e829b5e8b0935c180a91827da7584c77853334e87e6"
+    },
+    {
+      "path": "/app.js",
+      "status": 200,
+      "bytes": 18410,
+      "sha256": "dcd259cb37f2270c604c1fc718e876daa4005f9d9e1a0fe221b376691770da3c"
+    },
+    {
+      "path": "/api/health/live",
+      "status": 200,
+      "bytes": 60,
+      "json": {
+        "status": "alive",
+        "version": "2.0.0",
+        "language": "TypeScript"
+      }
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "bytes": 72,
+      "json": {
+        "status": "ready",
+        "database": "MySQL",
+        "schema": 1,
+        "language": "TypeScript"
+      }
+    },
+    {
+      "path": "/api/products?page=1&pageSize=100",
+      "status": 200,
+      "bytes": 2079,
+      "json": {
+        "items": [
+          {
+            "id": 25,
+            "sku": "QA-C01C4B2003-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 23,
+            "sku": "QA-C01C4B2003",
+            "name": "Producto QA conservado",
+            "category": "Pruebas",
+            "price": 12.35,
+            "stock": 9,
+            "minimumStock": 2
+          },
+          {
+            "id": 22,
+            "sku": "QA-6FB78CBA5A-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 20,
+            "sku": "QA-6FB78CBA5A",
+            "name": "Producto QA conservado",
+            "category": "Pruebas",
+            "price": 12.35,
+            "stock": 9,
+            "minimumStock": 2
+          },
+          {
+            "id": 19,
+            "sku": "QA-B0F8F7BDCF-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 17,
+            "sku": "QA-B0F8F7BDCF",
+            "name": "Producto QA conservado",
+            "category": "Pruebas",
+            "price": 12.35,
+            "stock": 9,
+            "minimumStock": 2
+          },
+          {
+            "id": 16,
+            "sku": "QA-E7ACF00165-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 14,
+            "sku": "QA-E7ACF00165",
+            "name": "Producto QA conservado",
+            "category": "Pruebas",
+            "price": 12.35,
+            "stock": 9,
+            "minimumStock": 2
+          },
+          {
+            "id": 13,
+            "sku": "VM13",
+            "name": "demo",
+            "category": "demo",
+            "price": 49.9,
+            "stock": 8,
+            "minimumStock": 5
+          },
+          {
+            "id": 12,
+            "sku": "QA-6AD5CDC6C2-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 10,
+            "sku": "QA-6AD5CDC6C2",
+            "name": "Producto QA conservado",
+            "category": "Pruebas",
+            "price": 12.35,
+            "stock": 9,
+            "minimumStock": 2
+          },
+          {
+            "id": 9,
+            "sku": "QA-B799EE73DF-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 7,
+            "sku": "QA-B799EE73DF",
+            "name": "Producto QA conservado",
+            "category": "Pruebas",
+            "price": 12.35,
+            "stock": 9,
+            "minimumStock": 2
+          },
+          {
+            "id": 6,
+            "sku": "QA-1DAC83AC42-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 4,
+            "sku": "QA-1DAC83AC42",
+            "name": "Producto QA conservado",
+            "category": "Pruebas",
+            "price": 12.35,
+            "stock": 9,
+            "minimumStock": 2
+          },
+          {
+            "id": 3,
+            "sku": "QA-63575A73A1-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 1,
+            "sku": "QA-63575A73A1",
+            "name": "Producto QA conservado",
+            "category": "Pruebas",
+            "price": 12.35,
+            "stock": 9,
+            "minimumStock": 2
+          }
+        ],
+        "total": 17,
+        "page": 1,
+        "pageSize": 100
+      }
+    },
+    {
+      "path": "/api/products/13",
+      "status": 200,
+      "bytes": 94,
+      "json": {
+        "id": 13,
+        "sku": "VM13",
+        "name": "demo",
+        "category": "demo",
+        "price": 49.9,
+        "stock": 8,
+        "minimumStock": 5
+      }
+    },
+    {
+      "path": "/api/products/13/movements",
+      "status": 200,
+      "bytes": 201,
+      "json": [
+        {
+          "id": 22,
+          "delta": -2,
+          "reason": "Venta",
+          "saleId": 9,
+          "createdAt": "2026-11-13T11:42:32.151376Z"
+        },
+        {
+          "id": 21,
+          "delta": 10,
+          "reason": "Existencias iniciales",
+          "saleId": null,
+          "createdAt": "2026-11-13T11:41:46.64415Z"
+        }
+      ]
+    },
+    {
+      "path": "/api/sales?page=1&pageSize=100",
+      "status": 200,
+      "bytes": 1123,
+      "json": {
+        "items": [
+          {
+            "id": 17,
+            "total": 1,
+            "createdAt": "2026-11-13T14:08:09.48546Z"
+          },
+          {
+            "id": 16,
+            "total": 37.05,
+            "createdAt": "2026-11-13T14:08:09.156163Z"
+          },
+          {
+            "id": 15,
+            "total": 1,
+            "createdAt": "2026-11-13T14:01:44.936075Z"
+          },
+          {
+            "id": 14,
+            "total": 37.05,
+            "createdAt": "2026-11-13T14:01:44.730723Z"
+          },
+          {
+            "id": 13,
+            "total": 1,
+            "createdAt": "2026-11-13T13:46:03.139659Z"
+          },
+          {
+            "id": 12,
+            "total": 37.05,
+            "createdAt": "2026-11-13T13:46:02.805971Z"
+          },
+          {
+            "id": 11,
+            "total": 1,
+            "createdAt": "2026-11-13T13:15:24.554494Z"
+          },
+          {
+            "id": 10,
+            "total": 37.05,
+            "createdAt": "2026-11-13T13:15:24.28468Z"
+          },
+          {
+            "id": 9,
+            "total": 99.8,
+            "createdAt": "2026-11-13T11:42:32.151376Z"
+          },
+          {
+            "id": 8,
+            "total": 1,
+            "createdAt": "2026-11-13T07:29:34.484337Z"
+          },
+          {
+            "id": 7,
+            "total": 37.05,
+            "createdAt": "2026-11-13T07:29:34.296635Z"
+          },
+          {
+            "id": 6,
+            "total": 1,
+            "createdAt": "2026-11-13T07:29:32.92896Z"
+          },
+          {
+            "id": 5,
+            "total": 37.05,
+            "createdAt": "2026-11-13T07:29:32.638881Z"
+          },
+          {
+            "id": 4,
+            "total": 1,
+            "createdAt": "2026-11-13T07:09:36.348776Z"
+          },
+          {
+            "id": 3,
+            "total": 37.05,
+            "createdAt": "2026-11-13T07:09:36.135309Z"
+          },
+          {
+            "id": 2,
+            "total": 1,
+            "createdAt": "2026-11-13T07:08:14.900479Z"
+          },
+          {
+            "id": 1,
+            "total": 37.05,
+            "createdAt": "2026-11-13T07:08:14.682817Z"
+          }
+        ],
+        "total": 17,
+        "page": 1,
+        "pageSize": 100
+      }
+    },
+    {
+      "path": "/api/sales/9",
+      "status": 200,
+      "bytes": 198,
+      "json": {
+        "id": 9,
+        "requestId": "437bb231-48a9-40cd-9e98-e895be179533",
+        "total": 99.8,
+        "createdAt": "2026-11-13T11:42:32.151376Z",
+        "items": [
+          {
+            "productId": 13,
+            "sku": "VM13",
+            "name": "demo",
+            "quantity": 2,
+            "unitPrice": 49.9
+          }
+        ]
+      }
+    },
+    {
+      "path": "/api/analytics",
+      "status": 200,
+      "bytes": 5835,
+      "json": {
+        "productCount": 17,
+        "stockUnits": 80,
+        "stockValue": 1288.4,
+        "lowStockCount": 8,
+        "saleCount": 17,
+        "revenue": 404.2,
+        "revenue30": 404.2,
+        "averageTicket": 23.78,
+        "lowStock": [
+          {
+            "id": 3,
+            "sku": "QA-63575A73A1-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 6,
+            "sku": "QA-1DAC83AC42-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 9,
+            "sku": "QA-B799EE73DF-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 12,
+            "sku": "QA-6AD5CDC6C2-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 16,
+            "sku": "QA-E7ACF00165-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 19,
+            "sku": "QA-B0F8F7BDCF-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 22,
+            "sku": "QA-6FB78CBA5A-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          },
+          {
+            "id": 25,
+            "sku": "QA-C01C4B2003-R",
+            "name": "QA concurrencia",
+            "category": "Pruebas",
+            "price": 1,
+            "stock": 0,
+            "minimumStock": 0
+          }
+        ],
+        "topProducts": [
+          {
+            "id": 1,
+            "sku": "QA-63575A73A1",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 4,
+            "sku": "QA-1DAC83AC42",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 7,
+            "sku": "QA-B799EE73DF",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 10,
+            "sku": "QA-6AD5CDC6C2",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 14,
+            "sku": "QA-E7ACF00165",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          }
+        ],
+        "recommendations": [
+          {
+            "id": 3,
+            "sku": "QA-63575A73A1-R",
+            "name": "QA concurrencia",
+            "stock": 0,
+            "minimumStock": 0,
+            "unitsSold30": 1,
+            "dailyAverage": 0.03,
+            "daysCover": 0,
+            "suggestedOrder": 1
+          },
+          {
+            "id": 6,
+            "sku": "QA-1DAC83AC42-R",
+            "name": "QA concurrencia",
+            "stock": 0,
+            "minimumStock": 0,
+            "unitsSold30": 1,
+            "dailyAverage": 0.03,
+            "daysCover": 0,
+            "suggestedOrder": 1
+          },
+          {
+            "id": 9,
+            "sku": "QA-B799EE73DF-R",
+            "name": "QA concurrencia",
+            "stock": 0,
+            "minimumStock": 0,
+            "unitsSold30": 1,
+            "dailyAverage": 0.03,
+            "daysCover": 0,
+            "suggestedOrder": 1
+          },
+          {
+            "id": 12,
+            "sku": "QA-6AD5CDC6C2-R",
+            "name": "QA concurrencia",
+            "stock": 0,
+            "minimumStock": 0,
+            "unitsSold30": 1,
+            "dailyAverage": 0.03,
+            "daysCover": 0,
+            "suggestedOrder": 1
+          },
+          {
+            "id": 16,
+            "sku": "QA-E7ACF00165-R",
+            "name": "QA concurrencia",
+            "stock": 0,
+            "minimumStock": 0,
+            "unitsSold30": 1,
+            "dailyAverage": 0.03,
+            "daysCover": 0,
+            "suggestedOrder": 1
+          },
+          {
+            "id": 19,
+            "sku": "QA-B0F8F7BDCF-R",
+            "name": "QA concurrencia",
+            "stock": 0,
+            "minimumStock": 0,
+            "unitsSold30": 1,
+            "dailyAverage": 0.03,
+            "daysCover": 0,
+            "suggestedOrder": 1
+          },
+          {
+            "id": 22,
+            "sku": "QA-6FB78CBA5A-R",
+            "name": "QA concurrencia",
+            "stock": 0,
+            "minimumStock": 0,
+            "unitsSold30": 1,
+            "dailyAverage": 0.03,
+            "daysCover": 0,
+            "suggestedOrder": 1
+          },
+          {
+            "id": 25,
+            "sku": "QA-C01C4B2003-R",
+            "name": "QA concurrencia",
+            "stock": 0,
+            "minimumStock": 0,
+            "unitsSold30": 1,
+            "dailyAverage": 0.03,
+            "daysCover": 0,
+            "suggestedOrder": 1
+          },
+          {
+            "id": 1,
+            "sku": "QA-63575A73A1",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 4,
+            "sku": "QA-1DAC83AC42",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 7,
+            "sku": "QA-B799EE73DF",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 10,
+            "sku": "QA-6AD5CDC6C2",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 13,
+            "sku": "VM13",
+            "name": "demo",
+            "stock": 8,
+            "minimumStock": 5,
+            "unitsSold30": 2,
+            "dailyAverage": 0.07,
+            "daysCover": 120,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 14,
+            "sku": "QA-E7ACF00165",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 17,
+            "sku": "QA-B0F8F7BDCF",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 20,
+            "sku": "QA-6FB78CBA5A",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          },
+          {
+            "id": 23,
+            "sku": "QA-C01C4B2003",
+            "name": "Producto QA conservado",
+            "stock": 9,
+            "minimumStock": 2,
+            "unitsSold30": 3,
+            "dailyAverage": 0.1,
+            "daysCover": 90,
+            "suggestedOrder": 0
+          }
+        ],
+        "daily": [
+          {
+            "date": "2026-10-15",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-16",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-17",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-18",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-19",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-20",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-21",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-22",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-23",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-24",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-25",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-26",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-27",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-28",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-29",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-30",
+            "revenue": 0
+          },
+          {
+            "date": "2026-10-31",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-01",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-02",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-03",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-04",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-05",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-06",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-07",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-08",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-09",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-10",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-11",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-12",
+            "revenue": 0
+          },
+          {
+            "date": "2026-11-13",
+            "revenue": 404.2
+          }
+        ],
+        "method": "Demanda media de 30 días; compra = max(0, unidades vendidas en 30 días + mínimo − stock). Orientación, no predicción.",
+        "period": "Demanda: últimas 720 horas; gráfico: 30 fechas UTC; totales: todo el historial."
+      }
+    },
+    {
+      "path": "/api/academic/recursion",
+      "status": 200,
+      "bytes": 138,
+      "json": {
+        "algorithm": "Suma recursiva por división y conquista",
+        "products": 17,
+        "value": 1288.4,
+        "timeComplexity": "O(n)",
+        "stackComplexity": "O(log n)"
+      }
+    }
+  ],
+  "status": "PASS"
+}

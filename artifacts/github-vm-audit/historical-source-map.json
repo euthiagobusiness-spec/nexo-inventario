@@ -1,0 +1,62 @@
+[
+  {
+    "vmCopy": "backend/src/Inventario.Api/AcademicModels.cs",
+    "preservedAt": "docs/history/vm-snapshots/backend/src/Inventario.Api/AcademicModels.cs.txt",
+    "normalizedSha256": "aff8b07382bcf2a4a20dbd3140682ce99561313a8262234dca63eebbd8077268"
+  },
+  {
+    "vmCopy": "backend/src/Inventario.Api/wwwroot/index.html",
+    "preservedAt": "docs/history/vm-snapshots/backend/src/Inventario.Api/wwwroot/index.html.txt",
+    "normalizedSha256": "45b5e8813d4c472e3b095d1c2336a35b15207ec4170b977c17044b9b647b1ba5"
+  },
+  {
+    "vmCopy": "backend/tests/http_e2e.py",
+    "preservedAt": "docs/history/vm-snapshots/backend/tests/http_e2e.py.txt",
+    "normalizedSha256": "09a2ca953b4b6425357c3235f4e9ba915449b6d4d4d0885ab47ec90cf4d825c3"
+  },
+  {
+    "vmCopy": "database/deploy/mysql/configure-database.py",
+    "preservedAt": "docs/history/vm-snapshots/database/deploy/mysql/configure-database.py.txt",
+    "normalizedSha256": "55d46bf35bf6d88c019714adf78cac0fcf7c6c046eec851af8b2fb6ce5e99271"
+  },
+  {
+    "vmCopy": "database/src/Inventario.Api/AcademicModels.cs",
+    "preservedAt": "docs/history/vm-snapshots/backend/src/Inventario.Api/AcademicModels.cs.txt",
+    "normalizedSha256": "aff8b07382bcf2a4a20dbd3140682ce99561313a8262234dca63eebbd8077268"
+  },
+  {
+    "vmCopy": "database/src/Inventario.Api/Inventario.Api.csproj",
+    "preservedAt": "docs/history/Inventario.Api.postgresql.csproj.txt",
+    "normalizedSha256": "38bdd4767f58892521ddb594a76ff0f6dc40694c237ed28d094868dfabdd503c"
+  },
+  {
+    "vmCopy": "database/src/Inventario.Api/InventoryStore.cs",
+    "preservedAt": "docs/history/InventoryStore.postgresql.cs.txt",
+    "normalizedSha256": "d6e7ffbac46c5c36f31ddb7401b1300d82449ccfefa5e50b81eeec23ac96cbcf"
+  },
+  {
+    "vmCopy": "database/src/Inventario.Api/packages.lock.json",
+    "preservedAt": "docs/history/vm-snapshots/database/src/Inventario.Api/packages.lock.json.txt",
+    "normalizedSha256": "00f2f5386ea9b828ab22ca6b39f81a8777b8974809e40abb1dca160374f4d973"
+  },
+  {
+    "vmCopy": "database/src/Inventario.Api/Program.cs",
+    "preservedAt": "docs/history/Program.postgresql.cs.txt",
+    "normalizedSha256": "07f517203787700647d9ec9667f9e76570c75bce93c2500a4dd6e82fd8e0c155"
+  },
+  {
+    "vmCopy": "database/src/Inventario.Api/wwwroot/index.html",
+    "preservedAt": "docs/history/vm-snapshots/backend/src/Inventario.Api/wwwroot/index.html.txt",
+    "normalizedSha256": "45b5e8813d4c472e3b095d1c2336a35b15207ec4170b977c17044b9b647b1ba5"
+  },
+  {
+    "vmCopy": "database/tests/http_e2e.py",
+    "preservedAt": "docs/history/vm-snapshots/backend/tests/http_e2e.py.txt",
+    "normalizedSha256": "09a2ca953b4b6425357c3235f4e9ba915449b6d4d4d0885ab47ec90cf4d825c3"
+  },
+  {
+    "vmCopy": "maintenance/retire-postgresql.py",
+    "preservedAt": "deploy/mysql/retire-postgresql.py",
+    "normalizedSha256": "6b0395fbe7265a64ce03fc94d77cc209c9536c01c1ad0218347123a45715fde0"
+  }
+]

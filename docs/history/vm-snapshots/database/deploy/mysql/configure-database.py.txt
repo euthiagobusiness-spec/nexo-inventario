@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+"""Prepara MySQL en paralelo. No detiene ni modifica PostgreSQL."""
+import os, pathlib, pwd, secrets, shutil, socket, subprocess
+if os.geteuid()!=0 or socket.gethostname()!='ubuntu-database':
+    raise SystemExit('Solo root dentro de ubuntu-database.')
+root=pathlib.Path('/home/inventario/inventario-mvp')
+def mysql(sql):
+    p=subprocess.run(['mysql','--batch','--skip-column-names','--raw','--default-character-set=utf8mb4'],input=sql,text=True,capture_output=True)
+    if p.returncode: raise SystemExit('Falló configuración MySQL. Se conserva PostgreSQL; no se imprime SQL sensible.')
+    return p.stdout.strip()
+mysql('SELECT VERSION();')
+private=pathlib.Path('/home/inventario/.config/inventario');private.mkdir(mode=0o700,parents=True,exist_ok=True)
+account=pwd.getpwnam('inventario');os.chown(private,account.pw_uid,account.pw_gid);os.chmod(private,0o700)
+envfile=private/'mysql-transfer.env'
+if envfile.exists():
+    password=envfile.read_text().split('Password=',1)[1].split(';',1)[0]
+else:
+    if mysql("SELECT COUNT(*) FROM mysql.user WHERE User='inventario_app' AND Host='10.77.55.3';")!='0':
+        raise SystemExit('Existe una cuenta MySQL previa sin archivo del proyecto; se requiere revisión.')
+    password=secrets.token_urlsafe(48)
+    cs='ConnectionStrings__Inventory="Server=10.77.55.4;Port=3306;Database=inventario_db;UserID=inventario_app;Password='+password+';SslMode=VerifyCA;SslCa=/home/inventario/.config/inventario/mysql-ca.pem;DateTimeKind=Utc;GuidFormat=Char36"\n'
+    fd=os.open(envfile,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+    with os.fdopen(fd,'w') as f:f.write(cs)
+    os.chown(envfile,account.pw_uid,account.pw_gid)
+mysql((root/'db/mysql/001_schema.sql').read_text())
+mysql("SET SESSION sql_log_off=1; SET SESSION sql_log_bin=0; CREATE USER IF NOT EXISTS 'inventario_app'@'10.77.55.3' IDENTIFIED WITH caching_sha2_password BY '"+password+"' REQUIRE SSL; GRANT SELECT,INSERT,UPDATE ON inventario_db.* TO 'inventario_app'@'10.77.55.3';")
+ca=pathlib.Path('/var/lib/mysql/ca.pem')
+if not ca.exists():raise SystemExit('Falta CA TLS de MySQL; se conserva PostgreSQL.')
+shutil.copy2(ca,private/'mysql-ca.pem');os.chmod(private/'mysql-ca.pem',0o644);os.chown(private/'mysql-ca.pem',account.pw_uid,account.pw_gid)
+conf=pathlib.Path('/etc/mysql/mysql.conf.d/inventario-private.cnf')
+if conf.exists():
+    expected="[mysqld]\nbind-address=127.0.0.1,10.77.55.4\nmysqlx-bind-address=127.0.0.1\nrequire_secure_transport=ON\ndefault_time_zone='+00:00'\nskip_name_resolve=ON\n"
+    if conf.read_text()!=expected:raise SystemExit('Configuración MySQL del proyecto tiene cambios; revisar antes de reemplazar.')
+else:
+    conf.write_text("[mysqld]\nbind-address=127.0.0.1,10.77.55.4\nmysqlx-bind-address=127.0.0.1\nrequire_secure_transport=ON\ndefault_time_zone='+00:00'\nskip_name_resolve=ON\n")
+os.chmod(conf,0o644)
+subprocess.run(['systemctl','restart','mysql'],check=True)
+print('OK MySQL configurado con InnoDB, TLS, usuario exclusivo del Backend y escucha privada. PostgreSQL sigue activo.')

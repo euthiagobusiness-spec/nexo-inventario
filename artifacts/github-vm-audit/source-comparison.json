@@ -1,0 +1,24 @@
+{
+  "runtimeSourceRoot": "/home/inventario/inventario-typescript",
+  "runtimeSourceFilesMatching": 21,
+  "runtimeSourceDifferences": [
+    "db/README.md (documentation updated locally)"
+  ],
+  "compiledFilesMatching": [
+    "backend/src/InventoryStore.js",
+    "backend/src/VentaService.js",
+    "backend/src/domain.js",
+    "backend/src/server.js",
+    "backend/tests/domain.test.js",
+    "backend/tests/http.test.js",
+    "frontend/app.js",
+    "frontend/index.html",
+    "frontend/styles.css",
+    "frontend-build/frontend/src/app.js",
+    "frontend-build/shared/contracts.js",
+    "shared/contracts.js"
+  ],
+  "compiledFilesDifferent": [],
+  "installedServiceMatchesRepository": true,
+  "sourceHashAlgorithm": "SHA-256; source text normalized to UTF-8 without BOM and LF; compiled files compared as bytes"
+}

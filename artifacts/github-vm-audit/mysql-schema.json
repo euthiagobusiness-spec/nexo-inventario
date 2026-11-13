@@ -1,0 +1,265 @@
+{
+  "timestampUtc": "2026-11-13T19:30:59.713Z",
+  "consistentSnapshot": true,
+  "info": {
+    "databaseName": "inventario_db",
+    "mysqlVersion": "8.0.46-0ubuntu0.24.04.5"
+  },
+  "ssl": [
+    {
+      "Variable_name": "Ssl_cipher",
+      "Value": "TLS_AES_256_GCM_SHA384"
+    },
+    {
+      "Variable_name": "Ssl_version",
+      "Value": "TLSv1.3"
+    }
+  ],
+  "schema": [
+    {
+      "name": "products",
+      "engine": "InnoDB",
+      "ddl": "CREATE TABLE `products` (\n  `id` bigint NOT NULL AUTO_INCREMENT,\n  `sku` varchar(40) COLLATE utf8mb4_0900_as_cs NOT NULL,\n  `name` varchar(120) COLLATE utf8mb4_0900_as_cs NOT NULL,\n  `category` varchar(60) COLLATE utf8mb4_0900_as_cs NOT NULL,\n  `price` decimal(12,2) NOT NULL,\n  `stock` int NOT NULL,\n  `minimum_stock` int NOT NULL,\n  `created_at` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `sku` (`sku`),\n  CONSTRAINT `products_chk_1` CHECK (regexp_like(`sku`,_utf8mb4'^[A-Z0-9][A-Z0-9_-]{0,39}$',_utf8mb4'c')),\n  CONSTRAINT `products_chk_2` CHECK ((char_length(trim(`name`)) > 0)),\n  CONSTRAINT `products_chk_3` CHECK ((char_length(trim(`category`)) > 0)),\n  CONSTRAINT `products_chk_4` CHECK ((`price` > 0)),\n  CONSTRAINT `products_chk_5` CHECK ((`stock` between 0 and 1000000)),\n  CONSTRAINT `products_chk_6` CHECK ((`minimum_stock` between 0 and 1000000))\n) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs"
+    },
+    {
+      "name": "request_locks",
+      "engine": "InnoDB",
+      "ddl": "CREATE TABLE `request_locks` (\n  `request_key` varchar(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,\n  PRIMARY KEY (`request_key`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs"
+    },
+    {
+      "name": "sale_items",
+      "engine": "InnoDB",
+      "ddl": "CREATE TABLE `sale_items` (\n  `sale_id` bigint NOT NULL,\n  `product_id` bigint NOT NULL,\n  `product_name` varchar(120) COLLATE utf8mb4_0900_as_cs NOT NULL,\n  `sku` varchar(40) COLLATE utf8mb4_0900_as_cs NOT NULL,\n  `quantity` int NOT NULL,\n  `unit_price` decimal(12,2) NOT NULL,\n  PRIMARY KEY (`sale_id`,`product_id`),\n  KEY `ix_items_product` (`product_id`),\n  CONSTRAINT `sale_items_ibfk_1` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`),\n  CONSTRAINT `sale_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),\n  CONSTRAINT `sale_items_chk_1` CHECK ((`quantity` between 1 and 1000000)),\n  CONSTRAINT `sale_items_chk_2` CHECK ((`unit_price` > 0))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs"
+    },
+    {
+      "name": "sales",
+      "engine": "InnoDB",
+      "ddl": "CREATE TABLE `sales` (\n  `id` bigint NOT NULL AUTO_INCREMENT,\n  `request_id` char(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,\n  `payload_hash` varchar(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,\n  `total` decimal(22,2) NOT NULL,\n  `created_at` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `request_id` (`request_id`),\n  KEY `ix_sales_created` (`created_at`),\n  CONSTRAINT `sales_chk_1` CHECK ((`total` > 0))\n) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs"
+    },
+    {
+      "name": "schema_versions",
+      "engine": "InnoDB",
+      "ddl": "CREATE TABLE `schema_versions` (\n  `version` int NOT NULL,\n  `applied_at` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),\n  PRIMARY KEY (`version`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs"
+    },
+    {
+      "name": "stock_movements",
+      "engine": "InnoDB",
+      "ddl": "CREATE TABLE `stock_movements` (\n  `id` bigint NOT NULL AUTO_INCREMENT,\n  `product_id` bigint NOT NULL,\n  `delta` int NOT NULL,\n  `reason` varchar(200) COLLATE utf8mb4_0900_as_cs NOT NULL,\n  `sale_id` bigint DEFAULT NULL,\n  `created_at` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),\n  PRIMARY KEY (`id`),\n  KEY `ix_movements_product` (`product_id`,`id` DESC),\n  KEY `sale_id` (`sale_id`),\n  CONSTRAINT `stock_movements_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),\n  CONSTRAINT `stock_movements_ibfk_2` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`),\n  CONSTRAINT `stock_movements_chk_1` CHECK ((`delta` <> 0))\n) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs"
+    },
+    {
+      "name": "stock_requests",
+      "engine": "InnoDB",
+      "ddl": "CREATE TABLE `stock_requests` (\n  `request_id` char(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,\n  `payload_hash` varchar(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,\n  `product_id` bigint NOT NULL,\n  `resulting_stock` int NOT NULL,\n  PRIMARY KEY (`request_id`),\n  KEY `product_id` (`product_id`),\n  CONSTRAINT `stock_requests_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),\n  CONSTRAINT `stock_requests_chk_1` CHECK ((`resulting_stock` >= 0))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs"
+    }
+  ],
+  "columns": [
+    {
+      "tableName": "products",
+      "columnName": "id",
+      "columnType": "bigint",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "products",
+      "columnName": "sku",
+      "columnType": "varchar(40)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "products",
+      "columnName": "name",
+      "columnType": "varchar(120)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "products",
+      "columnName": "category",
+      "columnType": "varchar(60)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "products",
+      "columnName": "price",
+      "columnType": "decimal(12,2)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "products",
+      "columnName": "stock",
+      "columnType": "int",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "products",
+      "columnName": "minimum_stock",
+      "columnType": "int",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "products",
+      "columnName": "created_at",
+      "columnType": "datetime(6)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "request_locks",
+      "columnName": "request_key",
+      "columnType": "varchar(64)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sale_items",
+      "columnName": "sale_id",
+      "columnType": "bigint",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sale_items",
+      "columnName": "product_id",
+      "columnType": "bigint",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sale_items",
+      "columnName": "product_name",
+      "columnType": "varchar(120)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sale_items",
+      "columnName": "sku",
+      "columnType": "varchar(40)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sale_items",
+      "columnName": "quantity",
+      "columnType": "int",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sale_items",
+      "columnName": "unit_price",
+      "columnType": "decimal(12,2)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sales",
+      "columnName": "id",
+      "columnType": "bigint",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sales",
+      "columnName": "request_id",
+      "columnType": "char(36)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sales",
+      "columnName": "payload_hash",
+      "columnType": "varchar(64)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sales",
+      "columnName": "total",
+      "columnType": "decimal(22,2)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "sales",
+      "columnName": "created_at",
+      "columnType": "datetime(6)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "schema_versions",
+      "columnName": "version",
+      "columnType": "int",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "schema_versions",
+      "columnName": "applied_at",
+      "columnType": "datetime(6)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_movements",
+      "columnName": "id",
+      "columnType": "bigint",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_movements",
+      "columnName": "product_id",
+      "columnType": "bigint",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_movements",
+      "columnName": "delta",
+      "columnType": "int",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_movements",
+      "columnName": "reason",
+      "columnType": "varchar(200)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_movements",
+      "columnName": "sale_id",
+      "columnType": "bigint",
+      "nullable": "YES"
+    },
+    {
+      "tableName": "stock_movements",
+      "columnName": "created_at",
+      "columnType": "datetime(6)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_requests",
+      "columnName": "request_id",
+      "columnType": "char(36)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_requests",
+      "columnName": "payload_hash",
+      "columnType": "varchar(64)",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_requests",
+      "columnName": "product_id",
+      "columnType": "bigint",
+      "nullable": "NO"
+    },
+    {
+      "tableName": "stock_requests",
+      "columnName": "resulting_stock",
+      "columnType": "int",
+      "nullable": "NO"
+    }
+  ],
+  "rowCounts": {
+    "products": 17,
+    "request_locks": 12,
+    "sale_items": 17,
+    "sales": 17,
+    "schema_versions": 1,
+    "stock_movements": 42,
+    "stock_requests": 8
+  },
+  "reviewedDataScope": "QA/demo only; no MySQL system accounts or private configuration",
+  "offlineChecks": {
+    "allSaleTotalsMatchItems": true,
+    "stockMatchesMovementSum": true,
+    "foreignKeysReferenceExistingRows": true,
+    "tableAndColumnSetsMatchSourceSchema": true
+  }
+}

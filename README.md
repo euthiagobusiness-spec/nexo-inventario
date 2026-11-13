@@ -23,6 +23,7 @@ Desde la VM Windows, la dirección de laboratorio es **http://10.77.55.3:8080**.
 
 ## Revisar la entrega
 
+- [Validación directa de las tres VMs](docs/VALIDACION_TRES_VMS.md): fuentes comparadas, servicios, banco y captura real de Windows.
 - [Estado de entrega y evidencias](docs/ENTREGA_GITHUB.md): resultados, límites y diferencias entre evidencia anterior y verificación actual.
 - [Cómo ejecutar y desplegar](docs/INSTALACION.md): instalación local y reconstrucción del laboratorio.
 - [Explicación del sistema](docs/COMO_O_SISTEMA_FOI_FEITO.md): interfaz, API, SQL, transacciones y BI/BA.
@@ -56,10 +57,12 @@ Para abrir el workspace de VS Code: `code Inventario.code-workspace`.
 | `backend/src/` | API, validación, transacciones SQL y `VentaService.ts` |
 | `shared/contracts.ts` | Contratos JSON compartidos |
 | `db/mysql/001_schema.sql` | Esquema MySQL actual |
+| `db/mysql/demo-data.sql` | Exportación revisada de 114 filas QA/demo en siete tablas; solo para un banco nuevo |
 | `backend/tests/` | Pruebas de lógica y HTTP locales |
 | `tests/http_e2e.py` | 33 escenarios contra una instalación real; crea y conserva registros QA |
 | `deploy/typescript/`, `deploy/mysql/` | Preparación de runtime, servicios y configuración del laboratorio |
 | `artifacts/typescript/` | Evidencias de la versión actual y persistencia |
+| `artifacts/github-vm-audit/` | Verificación directa de las tres VMs, hashes, esquema y panel Windows |
 | `docs/`, `deliverables/` | Documentación y presentaciones académicas |
 | `src/Inventario.Api/`, `tests/Inventario.Tests/`, `docs/history/` | Código y pruebas de etapas C# anteriores |
 
@@ -67,6 +70,10 @@ Para abrir el workspace de VS Code: `code Inventario.code-workspace`.
 
 En la preparación de esta entrega pasaron **39 pruebas locales**, la revisión de tipos y la comprobación del original C#. La auditoría npm de dependencias de producción no informó vulnerabilidades. GitHub Actions vuelve a ejecutar los controles locales en cada publicación; no accede a las VMs privadas.
 
-Las evidencias guardadas documentan **33 escenarios HTTP aprobados** contra TypeScript/MySQL en `:8080`, inicio automático de Backend y recuperación/persistencia después del reinicio de Database. Durante la preparación del repositorio, SSH no estuvo accesible; estos resultados se identifican como evidencia previa. El recorrido visual completo de la versión TypeScript en Edge sigue pendiente de registro. La validación visual antigua corresponde a C#/PostgreSQL.
+Con las **tres VMs encendidas**, se verificaron directamente Backend activo, MySQL activo, PostgreSQL desactivado y el panel conectado en Windows. Coinciden 21 archivos de la instalación activa y los 12 archivos compilados comparados; la diferencia restante es documentación actualizada. Pasaron **12 consultas HTTP de solo lectura** y se exportaron las siete tablas QA/demo. Consulte [la validación directa](docs/VALIDACION_TRES_VMS.md).
 
-El sistema está destinado al laboratorio privado: no implementa autenticación de operadores ni HTTPS público. Las credenciales, certificados privados, respaldos, discos de VMs, videos y paquetes de fuentes duplicados quedan fuera de Git. Los datos reales continúan en las VMs; el repositorio incluye el esquema y evidencia QA, sin un volcado privado del banco.
+Las evidencias anteriores conservan **33 escenarios HTTP aprobados**, inicio automático y persistencia después de reinicios. No se repitieron sus operaciones de escritura durante esta revisión. El video del recorrido visual completo de altas y ventas TypeScript queda a cargo del autor.
+
+![Panel conectado en Edge dentro de WIN11-FRONTEND](artifacts/github-vm-audit/frontend-windows11.png)
+
+El sistema está destinado al laboratorio privado: no implementa autenticación de operadores ni HTTPS público. Las credenciales, certificados privados, respaldos, discos de VMs, videos y paquetes de fuentes duplicados quedan fuera de Git. El repositorio incluye el esquema y una exportación revisada de los datos académicos QA/demo. Las cuentas del motor y los respaldos privados permanecen fuera de Git.

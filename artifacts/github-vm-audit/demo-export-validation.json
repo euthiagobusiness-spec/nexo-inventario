@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "operations": [
+    "SELECT",
+    "EXPLAIN INSERT"
+  ],
+  "explainedInserts": 114,
+  "before": {
+    "products": "17",
+    "sales": "17"
+  },
+  "after": {
+    "products": "17",
+    "sales": "17"
+  },
+  "unchanged": true,
+  "fullRestoreExecuted": false
+}

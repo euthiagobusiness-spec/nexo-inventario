@@ -1,0 +1,102 @@
+"""Pruebas reales HTTP. Sin dependencias. Conserva registros QA; no borra datos.
+Exit 0=todo pasó; 1=fallos; 2=flujo de base de datos bloqueado.
+"""
+import argparse, concurrent.futures, json, sys, time, urllib.request, urllib.error, uuid
+from datetime import datetime, timezone
+from pathlib import Path
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--base-url', default='http://10.77.55.3:8080')
+parser.add_argument('--output', default='artifacts/http-results.json')
+args = parser.parse_args()
+results = []
+def request(path, method='GET', body=None, headers=None, raw=None):
+    data = raw if raw is not None else (json.dumps(body).encode() if body is not None else None)
+    req = urllib.request.Request(args.base_url+path, data=data, method=method,
+        headers={'Content-Type':'application/json', **(headers or {})})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r: return r.status, r.read().decode(), dict(r.headers)
+    except urllib.error.HTTPError as e: return e.code, e.read().decode(), dict(e.headers)
+    except urllib.error.URLError as e: return 0, json.dumps({'error':'Transporte HTTP no disponible: '+type(e.reason).__name__}), {}
+def check(name, run):
+    try:
+        detail = run()
+        results.append({'name':name,'status':'PASS','detail':detail})
+        print('PASS',name)
+        return detail
+    except Exception as e:
+        results.append({'name':name,'status':'FAIL','detail':str(e)})
+        print('FAIL',name,str(e)); return None
+def expect(path, status=200, method='GET', body=None, headers=None, raw=None):
+    code, text, response_headers=request(path,method,body,headers,raw)
+    assert code==status, f'HTTP {code}, esperado {status}: {text[:300]}'
+    if text.startswith('{') or text.startswith('['): return json.loads(text)
+    return {'status':code,'bytes':len(text),'headers':response_headers}
+def require(value, text):
+    assert value, text
+    return text
+# Espera de disponibilidad acotada para un proceso recién iniciado, sin ocultar fallos persistentes.
+deadline=time.monotonic()+15
+while time.monotonic()<deadline:
+    if request('/api/health/live')[0]==200: break
+    time.sleep(0.25)
+check('HTML servido',lambda:expect('/'))
+check('CSS servido',lambda:expect('/styles.css'))
+check('JavaScript servido',lambda:expect('/app.js'))
+check('API viva',lambda:require(expect('/api/health/live')['status']=='alive','alive'))
+check('Precio inválido rechazado antes del banco',lambda:expect('/api/products',400,'POST',{'sku':'QA','name':'QA','category':'QA','price':-1,'stock':0,'minimumStock':0}))
+check('Venta vacía rechazada',lambda:expect('/api/sales',400,'POST',{'requestId':str(uuid.uuid4()),'items':[]}))
+check('Cantidad cero rechazada',lambda:expect('/api/sales',400,'POST',{'requestId':str(uuid.uuid4()),'items':[{'productId':1,'quantity':0}]}))
+check('Detalle nulo rechazado sin error interno',lambda:expect('/api/sales',400,'POST',{'requestId':str(uuid.uuid4()),'items':[None]}))
+check('JSON malformado rechazado',lambda:expect('/api/products',400,'POST',raw=b'{broken'))
+check('Origen externo rechazado',lambda:expect('/api/products',403,'POST',{},headers={'Origin':'https://example.invalid'}))
+check('Paginación inválida rechazada',lambda:expect('/api/products?page=0',400))
+check('CSP y protección contra sniffing',lambda:require('Content-Security-Policy' in request('/')[2] and request('/')[2].get('X-Content-Type-Options')=='nosniff','headers presentes'))
+code, text, _ = request('/api/health/ready')
+blocked = code != 200
+prefix='QA-'+uuid.uuid4().hex[:10].upper()
+if blocked:
+    results.append({'name':'Disponibilidad del banco','status':'BLOCKED','detail':f'HTTP {code}: {text[:250]}'})
+    for name in ['Cadastro persistente','Consulta persistente','Venta y actualización de stock','Transacción atómica','Idempotencia de ventas','Venta simultánea sin sobreventa','Ajuste de stock idempotente','BI y BA reales','Recursividad con datos reales','Persistencia tras reinicio']:
+        results.append({'name':name,'status':'BLOCKED','detail':'Requiere PostgreSQL configurado y accesible; no ejecutado.'})
+    print('BLOCKED PostgreSQL: flujo persistente no ejecutado')
+else:
+    product=check('Cadastro persistente',lambda:expect('/api/products',201,'POST',{'sku':prefix,'name':'Producto QA conservado','category':'Pruebas','price':12.35,'stock':10,'minimumStock':2}))
+    if product:
+        pid=product['id']
+        check('Consulta del producto',lambda:require(expect(f'/api/products/{pid}')['stock']==10,'stock=10'))
+        check('SKU duplicado rechazado',lambda:expect('/api/products',409,'POST',{'sku':prefix,'name':'Duplicado QA','category':'Pruebas','price':1,'stock':0,'minimumStock':0}))
+        body={'requestId':str(uuid.uuid4()),'items':[{'productId':pid,'quantity':3}]}
+        sale=check('Venta mediante VentaService',lambda:expect('/api/sales',200,'POST',body))
+        if sale:
+            check('Total monetario y stock persistidos',lambda:require(sale['total']==37.05 and expect(f'/api/products/{pid}')['stock']==7,'total=37.05 stock=7'))
+            check('Reintento de venta idempotente',lambda:require(expect('/api/sales',200,'POST',body)['id']==sale['id'] and expect(f'/api/products/{pid}')['stock']==7,'misma venta; sin segundo descuento'))
+            changed={**body,'items':[{'productId':pid,'quantity':1}]}
+            check('Reutilización de ID con otro contenido rechazada',lambda:expect('/api/sales',409,'POST',changed))
+            detail=check('Detalle de venta persistido',lambda:expect(f"/api/sales/{sale['id']}"))
+        check('Venta insuficiente rechazada',lambda:expect('/api/sales',409,'POST',{'requestId':str(uuid.uuid4()),'items':[{'productId':pid,'quantity':8}]}))
+        check('Rechazo conserva stock',lambda:require(expect(f'/api/products/{pid}')['stock']==7,'stock=7'))
+        adjustment={'requestId':str(uuid.uuid4()),'delta':2,'reason':'Reposición QA conservada'}
+        check('Entrada de stock',lambda:require(expect(f'/api/products/{pid}/stock',200,'POST',adjustment)['stock']==9,'stock=9'))
+        check('Ajuste idempotente',lambda:require(expect(f'/api/products/{pid}/stock',200,'POST',adjustment)['stock']==9 and expect(f'/api/products/{pid}')['stock']==9,'stock=9 sin duplicación'))
+        check('Salida que produciría stock negativo rechazada',lambda:expect(f'/api/products/{pid}/stock',409,'POST',{'requestId':str(uuid.uuid4()),'delta':-10,'reason':'QA inválido'}))
+        second=check('Producto para competencia de ventas',lambda:expect('/api/products',201,'POST',{'sku':prefix+'-R','name':'QA concurrencia','category':'Pruebas','price':1,'stock':1,'minimumStock':0}))
+        if second:
+            sid=second['id']
+            check('Transacción multiproducto rechazada sin cambios parciales',lambda:expect('/api/sales',409,'POST',{'requestId':str(uuid.uuid4()),'items':[{'productId':pid,'quantity':1},{'productId':sid,'quantity':2}]}))
+            check('Atomicidad: ambos stocks intactos',lambda:require(expect(f'/api/products/{pid}')['stock']==9 and expect(f'/api/products/{sid}')['stock']==1,'stocks 9 y 1'))
+            def race():
+                with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+                    codes=list(pool.map(lambda _:request('/api/sales','POST',{'requestId':str(uuid.uuid4()),'items':[{'productId':sid,'quantity':1}]})[0],range(2)))
+                assert sorted(codes)==[200,409], str(codes)
+                assert expect(f'/api/products/{sid}')['stock']==0
+                return {'codes':codes,'stock':0}
+            check('Ventas simultáneas: una acepta, otra rechaza',race)
+        check('Trazabilidad de movimientos',lambda:require(len(expect(f'/api/products/{pid}/movements'))>=3,'movimientos presentes'))
+        check('BI y BA consultan datos persistentes',lambda:require(expect('/api/analytics')['productCount']>=1,'indicadores obtenidos del banco'))
+        check('Recursividad con datos persistentes',lambda:require(expect('/api/academic/recursion')['products']>=1,'recursividad ejecutada'))
+        check('Persistencia en otra conexión HTTP',lambda:require(expect(f'/api/products/{pid}')['stock']==9,'stock releído=9'))
+counts={s:sum(r['status']==s for r in results) for s in ['PASS','FAIL','BLOCKED']}
+output={'timestampUtc':datetime.now(timezone.utc).isoformat(),'baseUrl':args.base_url,'testPrefix':prefix if not blocked else None,'counts':counts,'results':results}
+path=Path(args.output);path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(output,ensure_ascii=False,indent=2),encoding='utf-8')
+print(json.dumps(counts));sys.exit(1 if counts['FAIL'] else 2 if blocked else 0)
